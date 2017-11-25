@@ -5,11 +5,13 @@
  */
 package ataques;
 
+import pokemon.Ataque;
+
 /**
  *
  * @author sylar
  */
-public class AtaqueFixo {
+public class AtaqueFixo extends Ataque {
     
     private int val;
     

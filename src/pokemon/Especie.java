@@ -19,9 +19,29 @@ public class Especie {
     private double baseSpe;
     private double baseSpd;
     
+    private Tipo tipo1, tipo2;
     
-    public double calcularAtributo(){
-        return 0.0;
+    
+    public double calcularAtributo(int level, int opcao){
+        
+        double retorno = 0.0;
+        //cacula o hp
+        switch(opcao)
+        {
+            //calcula hp
+            case 1 : retorno = 2 * this.baseHp * level / 100 + level + 10; break;
+            //calcula ataque
+            case 2 : retorno = 2 * this.baseAtk * level / 100 + 5; break;
+            //calcula defesa
+            case 3 : retorno = 2 * this.baseDef * level / 100 + 5; break;
+            //calcula speed
+            case 4 : retorno = 2 * this.baseSpe * level / 100 + 5; break;
+            //calcula spd
+            case 5 : retorno = 2 * this.baseSpd * level / 100 + 5; break;
+                         
+        }
+        
+        return retorno;
     }
 
     public int getId() {
@@ -78,6 +98,34 @@ public class Especie {
 
     public void setBaseSpd(double baseSpd) {
         this.baseSpd = baseSpd;
+    }
+
+    /**
+     * @return the tipo1
+     */
+    public Tipo getTipo1() {
+        return tipo1;
+    }
+
+    /**
+     * @param tipo1 the tipo1 to set
+     */
+    public void setTipo1(Tipo tipo1) {
+        this.tipo1 = tipo1;
+    }
+
+    /**
+     * @return the tipo2
+     */
+    public Tipo getTipo2() {
+        return tipo2;
+    }
+
+    /**
+     * @param tipo2 the tipo2 to set
+     */
+    public void setTipo2(Tipo tipo2) {
+        this.tipo2 = tipo2;
     }
     
     

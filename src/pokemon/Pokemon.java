@@ -2,6 +2,10 @@ package pokemon;
 
 
 public class Pokemon {
+    
+  private Ataque[] ataque = new Ataque[4];
+  private Especie especie = new Especie();
+  private Status priStatus, secStatus;
 
   private int level;
   private double hpAtual;
@@ -18,6 +22,17 @@ public class Pokemon {
   private int modifierSpd;
   private boolean confusuion;
   private boolean flinch;
+
+    public Pokemon() {
+        this.modifierAccuracy = 0;
+        this.modifierAtk = 0;
+        this.modifierDef = 0;
+        this.modifierEvasion = 0;
+        this.modifierSpd = 0;
+        this.modifierSpe = 0;
+    }
+  
+  
   
   public double valorAtributo(){
       return 0.0;
@@ -141,6 +156,34 @@ public class Pokemon {
 
     public void setFlinch(boolean flinch) {
         this.flinch = flinch;
+    }
+
+    /**
+     * @return the ataque
+     */
+    public Ataque[] getAtaque() {
+        return ataque;
+    }
+
+    /**
+     * @param ataque the ataque to set
+     */
+    public void setAtaque(Ataque[] ataque) {
+        this.setAtaque(ataque);
+    }
+
+    /**
+     * @return the especie
+     */
+    public Especie getEspecie() {
+        return especie;
+    }
+
+    /**
+     * @param especie the especie to set
+     */
+    public void setEspecie(Especie especie) {
+        this.especie = especie;
     }
   
   

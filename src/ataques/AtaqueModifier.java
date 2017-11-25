@@ -5,11 +5,13 @@
  */
 package ataques;
 
+import pokemon.Ataque;
+
 /**
  *
  * @author sylar
  */
-public class AtaqueModifier {
+public class AtaqueModifier extends Ataque {
     private int mod;
     private int n;
     private int chance;

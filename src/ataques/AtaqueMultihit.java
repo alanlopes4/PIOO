@@ -5,11 +5,13 @@
  */
 package ataques;
 
+import pokemon.Ataque;
+
 /**
  *
  * @author sylar
  */
-public class AtaqueMultihit {
+public class AtaqueMultihit extends Ataque {
     
     private int min;
     private int max;

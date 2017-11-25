@@ -5,11 +5,13 @@
  */
 package ataques;
 
+import pokemon.Ataque;
+
 /**
  *
  * @author sylar
  */
-public class AtaqueHP {
+public class AtaqueHP extends Ataque {
     
     private int valor;
     private int porcentagem;
