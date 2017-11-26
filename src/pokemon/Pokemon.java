@@ -34,8 +34,24 @@ public class Pokemon {
   
   
   
-  public double valorAtributo(){
-      return 0.0;
+  public double valorAtributo(int opcao){
+      
+      double retorno = 0.0;
+      
+      switch(opcao)
+        {
+            //calcula atak
+            case 1 : retorno = this.atk + (Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion)); break;
+            //calcula def
+            case 2 : retorno = this.def + (Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion)); break;
+            //calcula spd
+            case 3 : retorno = this.spd + (Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion)); break;
+            //calcula spe
+            case 4 : retorno = this.spe + (Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion)); break;
+                         
+        } 
+      
+      return retorno;
   }
 
     public int getLevel() {

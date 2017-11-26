@@ -12,6 +12,7 @@ package pokemon;
 public abstract class Jogador {
     
     private Pokemon[] time = new Pokemon[6];
+    private String comandoEscolhido;
     
     public abstract void escolherComando();
     
@@ -23,6 +24,8 @@ public abstract class Jogador {
         //realiza a troca dos pokemons
         time[0] = time[posicao];    
         time[posicao] = substituido;
+        
+        this.comandoEscolhido = "Troca!";
           
     }
     
@@ -30,6 +33,8 @@ public abstract class Jogador {
         
         //usando o ataque
         time[0].getAtaque()[posicao].efeito();
+        
+        this.comandoEscolhido = "Ataque!";
         
     }
 
@@ -45,6 +50,13 @@ public abstract class Jogador {
      */
     public void setTime(Pokemon[] time) {
         this.time = time;
+    }
+
+    /**
+     * @return the comandoEscolhido
+     */
+    public String getComandoEscolhido() {
+        return comandoEscolhido;
     }
     
     
