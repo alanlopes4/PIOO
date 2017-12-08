@@ -53,6 +53,7 @@ public class Batalha {
     
     public void inicializarJogador(){
         
+        
     }
     
     public void executarturno(){
@@ -86,6 +87,40 @@ public class Batalha {
     public void setJogador2(Jogador jogador2) {
         this.jogador2 = jogador2;
     }
+
+    public ArrayList<Especie> getEspecies() {
+        return especies;
+    }
+
+    public ArrayList<AtaqueHP> getAtaquesHP() {
+        return ataquesHP;
+    }
+
+    public ArrayList<AtaqueMultihit> getAtaquesMultihit() {
+        return ataquesMultihit;
+    }
+
+    public ArrayList<AtaqueModifier> getAtaquesModifier() {
+        return ataquesModifier;
+    }
+
+    public ArrayList<AtaqueFixo> getAtaquesFixo() {
+        return ataquesFixo;
+    }
+
+    public ArrayList<AtaqueStatus> getAtaquesStatus() {
+        return ataquesStatus;
+    }
+
+    public ArrayList<AtaqueCharge> getAtaquesCharge() {
+        return ataquesCharge;
+    }
+
+    public ArrayList<Ataque> getAtaquesComum() {
+        return ataquesComum;
+    }
+    
+    
     
     
 }
