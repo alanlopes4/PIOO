@@ -76,6 +76,9 @@ public class Batalha {
         jogador1.escolherComando();
         jogador2.escolherComando();
         
+        //decide o primeiro a jogar e começa o turno
+        primeiroAJogar();
+        
     }
     
     public void escolherPokemons(Jogador jogador)
@@ -111,12 +114,69 @@ public class Batalha {
         }
     }
     
-    public void executarturno(){
+    public void executarturno(Jogador jogador){
+        
+        int opcao = jogador.getComandoEscolhido();
+        Scanner entrada = new Scanner(System.in);
+        //troca
+        if(opcao == 1)
+        {
+            System.out.println("Qual pokemon será trocado?"); // 1 a 5
+            int posicaoPokemon = entrada.nextInt();
+            jogador.trocarPokemon(posicaoPokemon);
+            
+        }
+        //ataque
+        else if(opcao == 2)
+        {
+            System.out.println("Qual ataque será executado?"); // 0 a 3
+            int posicaoAtaque = entrada.nextInt();
+            jogador.usarAtaque(posicaoAtaque);
+            
+        }
+        else
+        {
+           System.out.println("Opção invalida!"); 
+        }
+    }
+    
+    //verificar o comportamento dos status
+    public void verificarComportamentoStatus()
+    {
         
     }
     
     public void primeiroAJogar()
     {
+        
+        //escolheu comando trocar pokemon
+        if(this.jogador1.getComandoEscolhido() == 1)
+        {
+            executarturno(jogador1);
+            executarturno(jogador2);
+        }
+        else if(this.jogador2.getComandoEscolhido() == 1)
+        {
+           executarturno(jogador2);
+           executarturno(jogador1); 
+        }
+        else
+        {
+            double spd1 = jogador1.getTime().get(0).getSpd();
+            double spd2 = jogador2.getTime().get(0).getSpd();
+            
+            if(spd1 > spd2)
+            {
+                executarturno(jogador1);
+                executarturno(jogador2); 
+            }
+            else
+            {
+                executarturno(jogador2);
+                executarturno(jogador1); 
+            }
+            
+        }
         
     }
 
