@@ -1,9 +1,12 @@
 package pokemon;
 
+import java.util.ArrayList;
+import java.util.List;
+
 
 public class Pokemon {
     
-  private Ataque[] ataque = new Ataque[4];
+  private List<Ataque> ataque = new ArrayList<>();
   private Especie especie = new Especie();
   private Status priStatus, secStatus;
 
@@ -178,19 +181,6 @@ public class Pokemon {
         this.flinch = flinch;
     }
 
-    /**
-     * @return the ataque
-     */
-    public Ataque[] getAtaque() {
-        return ataque;
-    }
-
-    /**
-     * @param ataque the ataque to set
-     */
-    public void setAtaque(Ataque[] ataque) {
-        this.setAtaque(ataque);
-    }
 
     /**
      * @return the especie
@@ -204,6 +194,20 @@ public class Pokemon {
      */
     public void setEspecie(Especie especie) {
         this.especie = especie;
+    }
+
+    /**
+     * @return the ataque
+     */
+    public List<Ataque> getAtaque() {
+        return ataque;
+    }
+
+    /**
+     * @param ataque the ataque to set
+     */
+    public void setAtaque(Ataque ataque) {
+        this.ataque.add(ataque);
     }
   
   

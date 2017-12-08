@@ -32,7 +32,7 @@ public abstract class Jogador {
     public void usarAtaque(int posicao){
         
         //usando o ataque
-        time[0].getAtaque()[posicao].efeito();
+        time[0].getAtaque().get(posicao).efeito();
         
         this.comandoEscolhido = "Ataque!";
         

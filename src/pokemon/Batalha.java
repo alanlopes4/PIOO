@@ -22,28 +22,14 @@ public class Batalha {
     
     private Jogador jogador1, jogador2;
     private ArrayList<Especie> especies = new ArrayList<Especie>();
-    private ArrayList<AtaqueHP> ataquesHP = new ArrayList<AtaqueHP>();
-    private ArrayList<AtaqueMultihit> ataquesMultihit = new ArrayList<AtaqueMultihit>();
-    private ArrayList<AtaqueModifier> ataquesModifier = new ArrayList<AtaqueModifier>();
-    private ArrayList<AtaqueFixo> ataquesFixo = new ArrayList<AtaqueFixo>();
-    private ArrayList<AtaqueStatus> ataquesStatus = new ArrayList<AtaqueStatus>();
-    private ArrayList<AtaqueCharge> ataquesCharge= new ArrayList<AtaqueCharge>();
-    private ArrayList<Ataque> ataquesComum = new ArrayList<Ataque>();
+    private ArrayList<Ataque> ataques = new ArrayList<Ataque>();
     
     
     
     public void carregarTabelas(){
         try{
             this.especies = Leitor.leitorEspecies();
-            Leitor leitor = new Leitor();
-            leitor.leitorAtaques();
-            this.ataquesHP = leitor.getAtaquesHP();
-            this.ataquesMultihit = leitor.getAtaquesMultihit();
-            this.ataquesModifier = leitor.getAtaquesModifier();
-            this.ataquesFixo = leitor.getAtaquesFixo();
-            this.ataquesStatus = leitor.getAtaquesStatus();
-            this.ataquesCharge = leitor.getAtaquesCharge();
-            this.ataquesComum = leitor.getAtaquesComum();
+            this.ataques = Leitor.leitorAtaques();
             
         }catch(Exception e){
             System.out.println("Erro:"+e);
@@ -92,32 +78,8 @@ public class Batalha {
         return especies;
     }
 
-    public ArrayList<AtaqueHP> getAtaquesHP() {
-        return ataquesHP;
-    }
-
-    public ArrayList<AtaqueMultihit> getAtaquesMultihit() {
-        return ataquesMultihit;
-    }
-
-    public ArrayList<AtaqueModifier> getAtaquesModifier() {
-        return ataquesModifier;
-    }
-
-    public ArrayList<AtaqueFixo> getAtaquesFixo() {
-        return ataquesFixo;
-    }
-
-    public ArrayList<AtaqueStatus> getAtaquesStatus() {
-        return ataquesStatus;
-    }
-
-    public ArrayList<AtaqueCharge> getAtaquesCharge() {
-        return ataquesCharge;
-    }
-
-    public ArrayList<Ataque> getAtaquesComum() {
-        return ataquesComum;
+    public ArrayList<Ataque> getAtaques() {
+        return ataques;
     }
     
     

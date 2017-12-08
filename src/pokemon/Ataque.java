@@ -76,4 +76,115 @@ public class Ataque {
     public boolean calculoAcerto(){
         return true;
     }
+
+    /**
+     * @return the id
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * @param id the id to set
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
+
+    /**
+     * @return the tipo
+     */
+    public Tipo getTipo() {
+        return tipo;
+    }
+
+    /**
+     * @param tipo the tipo to set
+     */
+    public void setTipo(Tipo tipo) {
+        this.tipo = tipo;
+    }
+
+    /**
+     * @return the ppMax
+     */
+    public double getPpMax() {
+        return ppMax;
+    }
+
+    /**
+     * @param ppMax the ppMax to set
+     */
+    public void setPpMax(double ppMax) {
+        this.ppMax = ppMax;
+    }
+
+    /**
+     * @return the ppAtual
+     */
+    public double getPpAtual() {
+        return ppAtual;
+    }
+
+    /**
+     * @param ppAtual the ppAtual to set
+     */
+    public void setPpAtual(double ppAtual) {
+        this.ppAtual = ppAtual;
+    }
+
+    /**
+     * @return the power
+     */
+    public double getPower() {
+        return power;
+    }
+
+    /**
+     * @param power the power to set
+     */
+    public void setPower(double power) {
+        this.power = power;
+    }
+
+    /**
+     * @return the accuracy
+     */
+    public double getAccuracy() {
+        return accuracy;
+    }
+
+    /**
+     * @param accuracy the accuracy to set
+     */
+    public void setAccuracy(double accuracy) {
+        this.accuracy = accuracy;
+    }
+    
+    @Override
+    public boolean equals(Object obj){
+        if(!(obj instanceof Ataque))
+            return false;
+        
+        Ataque a = (Ataque) obj;
+        if(this.id != a.getId())
+            return false;
+        
+        return true;
+    }
+   
 }

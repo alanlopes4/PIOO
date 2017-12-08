@@ -20,7 +20,7 @@ public class Maquina extends Jogador{
         //escolher o ataque aleatoriamente
         Random ra = new Random(4);
         int escolha = ra.nextInt();       
-        Ataque ataqueEscolhido = super.getTime()[0].getAtaque()[escolha];
+        //Ataque ataqueEscolhido = super.getTime()[0].getAtaque()[escolha];
                 
     }
 }
