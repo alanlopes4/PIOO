@@ -8,6 +8,7 @@ package pokemon;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import java.util.concurrent.ThreadLocalRandom;
 import util.Leitor;
 
 /**
@@ -73,7 +74,9 @@ public class Batalha {
         }
         
         //Escolha dos comenandos
+        System.out.println("Primeiro jogador");
         jogador1.escolherComando();
+        System.out.println("Segundo jogador");
         jogador2.escolherComando();
         
         //decide o primeiro a jogar e começa o turno
@@ -122,8 +125,12 @@ public class Batalha {
         if(opcao == 1)
         {
             System.out.println("Qual pokemon será trocado?"); // 1 a 5
-            int posicaoPokemon = entrada.nextInt();
-            jogador.trocarPokemon(posicaoPokemon);
+            if(jogador instanceof Humano){
+                int posicaoPokemon = entrada.nextInt();
+                jogador.trocarPokemon(posicaoPokemon);
+            }else{
+                jogador.trocarPokemon(ThreadLocalRandom.current().nextInt(1, jogador.getTime().size() + 1));
+            }
             
         }
         //ataque

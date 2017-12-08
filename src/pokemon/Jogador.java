@@ -67,7 +67,7 @@ public abstract class Jogador {
      * @param comandoEscolhido the comandoEscolhido to set
      */
     public void setComandoEscolhido(int comandoEscolhido) {
-        this.comandoEscolhido = comandoEscolhido;
+            this.comandoEscolhido = comandoEscolhido;
     }
     
     

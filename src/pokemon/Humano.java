@@ -16,11 +16,15 @@ public class Humano extends Jogador{
        
     @Override
     public void escolherComando(){
-       
-        System.out.println("Escolha dos comandos:");
-        System.out.println("1 - Troca e 2 - Ataque?");
-        Scanner opcao = new Scanner(System.in);
-        int escolha = opcao.nextInt();
+        int escolha = 0;
+        do{
+            System.out.println("Escolha dos comandos:");
+            System.out.println("1 - Troca e 2 - Ataque?");
+            Scanner opcao = new Scanner(System.in);
+            escolha = opcao.nextInt();
+            if(super.getTime().size()<=1)
+                System.out.println("Não é possível trocar, possui apenas 1 pokemon");
+        }while(super.getTime().size() <=1 && escolha == 1);
         super.setComandoEscolhido(escolha);
         
         

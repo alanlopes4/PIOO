@@ -47,7 +47,7 @@ public class Leitor {
     public static ArrayList<Ataque> leitorAtaques(){
         ArrayList<Ataque> ataques = new ArrayList<Ataque>();
         try{
-        BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ALISSON\\Documents\\NetBeansProjects\\PIOO\\arquivo\\TabelaDeAtaques.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("/alan/UEM/PPIOO/trabalho/TabelaDeAtaques.txt"));
         
         //pulando a leitura da primeira linha
         String linha = br.readLine();
@@ -129,7 +129,7 @@ public class Leitor {
     }
     
     public static ArrayList<Especie> leitorEspecies() throws Exception{
-        BufferedReader br = new BufferedReader(new FileReader("C:\\Users\\ALISSON\\Documents\\NetBeansProjects\\PIOO\\arquivo\\TabelaDeEspecies.txt")); 
+        BufferedReader br = new BufferedReader(new FileReader("/alan/UEM/PPIOO/trabalho/TabelaDeEspecies.txt")); 
         ArrayList<Especie> especies = new ArrayList<Especie>();
         String linha = br.readLine(); 
         Tipo tipo1 =  Tipo.NONE, tipo2 = Tipo.NONE;
