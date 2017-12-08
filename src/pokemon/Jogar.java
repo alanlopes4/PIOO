@@ -64,7 +64,8 @@ public class Jogar {
                 //escolha dos jogadores
                 if(escolha == 1)
                 {
-                    jogador1 = new Humano();                
+                    jogador1 = new Humano();   
+                    escolherPokemons(jogador1);
                 }
                 else
                 {
@@ -113,8 +114,7 @@ public class Jogar {
             {
                 System.out.println( (j + 1) + "° Ataque:");
                 int codigoAtaque = entrada.nextInt();
-                pokemon.setAtaque(ba.getAtaques().get(codigo - 1));
-                                
+                pokemon.setAtaque(ba.getAtaques().get(codigo - 1));                             
             }
         }
     }

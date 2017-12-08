@@ -5,12 +5,7 @@
  */
 package pokemon;
 
-import ataques.AtaqueCharge;
-import ataques.AtaqueFixo;
-import ataques.AtaqueHP;
-import ataques.AtaqueModifier;
-import ataques.AtaqueMultihit;
-import ataques.AtaqueStatus;
+
 import java.util.ArrayList;
 import util.Leitor;
 
