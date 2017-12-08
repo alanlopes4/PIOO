@@ -6,6 +6,7 @@
 package ataques;
 
 import pokemon.Ataque;
+import pokemon.Tipo;
 
 /**
  *
@@ -14,7 +15,13 @@ import pokemon.Ataque;
 public class AtaqueHP extends Ataque {
     
     private int valor;
-    private int porcentagem;
+    private double porcentagem;
+
+    public AtaqueHP(int id, String nome, Tipo tipo, double ppMax, double ppAtual, double power, double accuracy, int valor, double porcentagem) {
+        super(id, nome, tipo, ppMax, ppAtual, power, accuracy);
+        this.valor = valor;
+        this.porcentagem = porcentagem;
+    }
     
     
     public void efeito(){
@@ -29,11 +36,11 @@ public class AtaqueHP extends Ataque {
         this.valor = valor;
     }
 
-    public int getPorcentagem() {
+    public double getPorcentagem() {
         return porcentagem;
     }
 
-    public void setPorcentagem(int porcentagem) {
+    public void setPorcentagem(double porcentagem) {
         this.porcentagem = porcentagem;
     }
     

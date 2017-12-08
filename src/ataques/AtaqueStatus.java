@@ -6,6 +6,8 @@
 package ataques;
 
 import pokemon.Ataque;
+import pokemon.Status;
+import pokemon.Tipo;
 
 /**
  *
@@ -13,18 +15,26 @@ import pokemon.Ataque;
  */
 public class AtaqueStatus extends Ataque {
     
-    private int status;
+    private Status status;
     private int chance;
+
+    public AtaqueStatus(int id, String nome, Tipo tipo, double ppMax, double ppAtual, double power, double accuracy, Status status, int chance) {
+        super(id, nome, tipo, ppMax, ppAtual, power, accuracy);
+        this.status = status;
+        this.chance = chance;
+    }
+    
+    
     
     public void efeito(){
         
     }
 
-    public int getStatus() {
+    public Status getStatus() {
         return status;
     }
 
-    public void setStatus(int status) {
+    public void setStatus(Status status) {
         this.status = status;
     }
 

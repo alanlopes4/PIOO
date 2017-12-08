@@ -20,6 +20,22 @@ public class Especie {
     private double baseSpd;
     
     private Tipo tipo1, tipo2;
+
+    public Especie(){}
+    
+    public Especie(int id, String nome, Tipo tipo1, Tipo tipo2, double baseHp, double baseAtk, double baseDef, double baseSpe, double baseSpd) {
+        this.id = id;
+        this.nome = nome;
+        this.baseHp = baseHp;
+        this.baseAtk = baseAtk;
+        this.baseDef = baseDef;
+        this.baseSpe = baseSpe;
+        this.baseSpd = baseSpd;
+        this.tipo1 = tipo1;
+        this.tipo2 = tipo2;
+    }
+    
+    
     
     
     public double calcularAtributo(int level, int opcao){

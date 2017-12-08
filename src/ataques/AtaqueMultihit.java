@@ -6,6 +6,7 @@
 package ataques;
 
 import pokemon.Ataque;
+import pokemon.Tipo;
 
 /**
  *
@@ -15,6 +16,14 @@ public class AtaqueMultihit extends Ataque {
     
     private int min;
     private int max;
+
+    public AtaqueMultihit(int id, String nome, Tipo tipo, double ppMax, double ppAtual, double power, double accuracy, int min, int max) {
+        super(id, nome, tipo, ppMax, ppAtual, power, accuracy);
+        this.min = min;
+        this.max = max;
+    }
+    
+    
     
     public void efeito(){
         

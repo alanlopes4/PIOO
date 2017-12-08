@@ -13,10 +13,28 @@ public class Ataque {
     
     private int id;
     private String nome;
+    private Tipo tipo;
     private double ppMax;
     private double ppAtual;
     private double power;
     private double accuracy;
+    
+    public Ataque(){
+        
+    }
+
+    public Ataque(int id, String nome, Tipo tipo, double ppMax, double ppAtual, double power, double accuracy) {
+        this.id = id;
+        this.nome = nome;
+        this.ppMax = ppMax;
+        this.ppAtual = ppAtual;
+        this.power = power;
+        this.accuracy = accuracy;
+        this.tipo = tipo;
+    }
+    
+    
+    
     
     public void efeito(){
         

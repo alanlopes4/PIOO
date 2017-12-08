@@ -6,6 +6,7 @@
 package ataques;
 
 import pokemon.Ataque;
+import pokemon.Tipo;
 
 /**
  *
@@ -15,6 +16,15 @@ public class AtaqueModifier extends Ataque {
     private int mod;
     private int n;
     private int chance;
+
+    public AtaqueModifier( int id, String nome, Tipo tipo, double ppMax, double ppAtual, double power, double accuracy, int mod, int n, int chance) {
+        super(id, nome, tipo, ppMax, ppAtual, power, accuracy);
+        this.mod = mod;
+        this.n = n;
+        this.chance = chance;
+    }
+    
+    
     
     
     public void efeito(){
