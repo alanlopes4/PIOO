@@ -24,6 +24,10 @@ public class Pokemon {
   private boolean flinch;
 
     public Pokemon() {
+        
+        
+        
+        
         this.modifierAccuracy = 0;
         this.modifierAtk = 0;
         this.modifierDef = 0;
