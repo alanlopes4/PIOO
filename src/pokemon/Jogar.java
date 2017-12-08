@@ -22,31 +22,7 @@ public class Jogar {
         ba = new Batalha();
         ba.carregarTabelas();
         
-        Ataque a = ba.getAtaques().get(31 - 1);
-               
-        Scanner entrada = new Scanner(System.in);
-        int j1 = entrada.nextInt();
-        int qnt_pokemon_j1 = entrada.nextInt();
-        int pokemons_j1[][] = new int[qnt_pokemon_j1][6];
-        for(int i=0;i<qnt_pokemon_j1;i++){
-            for(int j =0;j<6;j++){
-                pokemons_j1[i][j] = entrada.nextInt();
-            }
-        }
-        
-        int j2 = entrada.nextInt();
-        int qnt_pokemon_j2 = entrada.nextInt();
-        int pokemons_j2[][] = new int[qnt_pokemon_j2][6];
-        for(int i=0;i<qnt_pokemon_j2;i++){
-            for(int j =0;j<6;j++){
-                pokemons_j2[i][j] = entrada.nextInt();
-            }
-        }
-        
-        
-        Pokemon pk1 = new Pokemon();
-        pk1.setEspecie(ba.getEspecies().get(pokemons_j1[0][2]));
-        
+        iniciarJogadores();
         
     }
     
@@ -65,7 +41,6 @@ public class Jogar {
                 if(escolha == 1)
                 {
                     jogador1 = new Humano();   
-                    escolherPokemons(jogador1);
                 }
                 else
                 {
@@ -73,6 +48,7 @@ public class Jogar {
                 }
                 
                 //escolha dos pokemons
+                escolherPokemons(jogador1);
                 
             }
             else
@@ -85,6 +61,8 @@ public class Jogar {
                 {
                     jogador2 = new Maquina();
                 }
+                
+                escolherPokemons(jogador2);
             }
         }
     }
@@ -103,35 +81,24 @@ public class Jogar {
             System.out.println( (i + 1) + "° Pokemon:");
             System.out.println("Código do pokemon:");
             int codigo = entrada.nextInt();
-            pokemon.setEspecie(ba.getEspecies().get(codigo));
+            pokemon.setEspecie(ba.getEspecies().get(codigo - 1));
             
             System.out.println("Level do pokemon:");
             int level = entrada.nextInt();
             pokemon.setLevel(level);
             
             
-            for(int j = 0; j < 4; i++)
+            for(int j = 0; j < 4; j++)
             {
                 System.out.println( (j + 1) + "° Ataque:");
                 int codigoAtaque = entrada.nextInt();
-                pokemon.setAtaque(ba.getAtaques().get(codigo - 1));                             
+                if(codigoAtaque != 0)
+                    pokemon.setAtaque(ba.getAtaques().get(codigoAtaque - 1));                             
             }
+            
+            //adcionando no time o pokemon do jogador
+            jogador.getTime().add(pokemon);
         }
     }
     
-    
-    public static Ataque buscarAtaque(int codigo)
-    {
-      /*  Ataque ata = new Ataque();
-        ata.setId(codigo);
-        if(ba.getAtaquesCharge().contains(ata))
-        {
-            for (Ataque charge : ba.getAtaquesCharge()) {
-                if(charge.getId() == codigo)
-                    return charge;
-            }
-        }
-        */
-        return null;
-    }
 }
