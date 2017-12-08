@@ -5,7 +5,6 @@
  */
 package pokemon;
 
-import java.util.Random;
 
 /**
  *
@@ -18,9 +17,10 @@ public class Maquina extends Jogador{
     public void escolherComando(){
         
         //escolher o ataque aleatoriamente
-        Random ra = new Random(4);
-        int escolha = ra.nextInt();       
-        Ataque ataqueEscolhido = super.getTime().get(0).getAtaque().get(escolha);
+        double escolha = 1 + Math.random() * 2;
+        int n = (int) escolha;
+        super.setComandoEscolhido(n);
+        //Ataque ataqueEscolhido = super.getTime().get(0).getAtaque().get(escolha);
                 
     }
 }

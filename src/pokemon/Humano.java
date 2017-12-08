@@ -17,29 +17,32 @@ public class Humano extends Jogador{
     @Override
     public void escolherComando(){
        
+        System.out.println("Escolha dos comandos:");
         System.out.println("1 - Troca e 2 - Ataque?");
         Scanner opcao = new Scanner(System.in);
+        int escolha = opcao.nextInt();
+        super.setComandoEscolhido(escolha);
         
         //troca
-        if(opcao.nextInt() == 1)
-        {
-            System.out.println("Qual pokemon será trocado?"); // 1 a 5
-            int posicaoPokemon = opcao.nextInt();
-            super.trocarPokemon(posicaoPokemon);
-            
-        }
-        //ataque
-        else if(opcao.nextInt() == 2)
-        {
-            System.out.println("Qual ataque será executado?"); // 0 a 3
-            int posicaoAtaque = opcao.nextInt();
-            super.usarAtaque(posicaoAtaque);
-            
-        }
-        else
-        {
-           System.out.println("Opção invalida!"); 
-        }
+//        if(opcao.nextInt() == 1)
+//        {
+//            System.out.println("Qual pokemon será trocado?"); // 1 a 5
+//            int posicaoPokemon = opcao.nextInt();
+//            super.trocarPokemon(posicaoPokemon);
+//            
+//        }
+//        //ataque
+//        else if(opcao.nextInt() == 2)
+//        {
+//            System.out.println("Qual ataque será executado?"); // 0 a 3
+//            int posicaoAtaque = opcao.nextInt();
+//            super.usarAtaque(posicaoAtaque);
+//            
+//        }
+//        else
+//        {
+//           System.out.println("Opção invalida!"); 
+//        }
         
     }
 }

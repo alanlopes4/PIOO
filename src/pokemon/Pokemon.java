@@ -209,6 +209,34 @@ public class Pokemon {
     public void setAtaque(Ataque ataque) {
         this.ataque.add(ataque);
     }
+
+    /**
+     * @return the priStatus
+     */
+    public Status getPriStatus() {
+        return priStatus;
+    }
+
+    /**
+     * @param priStatus the priStatus to set
+     */
+    public void setPriStatus(Status priStatus) {
+        this.priStatus = priStatus;
+    }
+
+    /**
+     * @return the secStatus
+     */
+    public Status getSecStatus() {
+        return secStatus;
+    }
+
+    /**
+     * @param secStatus the secStatus to set
+     */
+    public void setSecStatus(Status secStatus) {
+        this.secStatus = secStatus;
+    }
   
   
     

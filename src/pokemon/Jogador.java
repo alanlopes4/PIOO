@@ -15,7 +15,7 @@ import java.util.List;
 public abstract class Jogador {
     
     private List<Pokemon> time = new ArrayList<Pokemon>();
-    private String comandoEscolhido;
+    private int comandoEscolhido;
     
     public abstract void escolherComando();
     
@@ -28,7 +28,7 @@ public abstract class Jogador {
         getTime().set(0, getTime().get(posicao));    
         getTime().set(posicao, substituido);
         
-        this.comandoEscolhido = "Troca!";
+        this.setComandoEscolhido(1);
           
     }
     
@@ -37,18 +37,10 @@ public abstract class Jogador {
         //usando o ataque
         getTime().get(0).getAtaque().get(posicao).efeito();
         
-        this.comandoEscolhido = "Ataque!";
+        this.setComandoEscolhido(2);
         
     }
 
-    
-
-    /**
-     * @return the comandoEscolhido
-     */
-    public String getComandoEscolhido() {
-        return comandoEscolhido;
-    }
 
     /**
      * @return the time
@@ -62,6 +54,20 @@ public abstract class Jogador {
      */
     public void setTime(List<Pokemon> time) {
         this.time = time;
+    }
+
+    /**
+     * @return the comandoEscolhido
+     */
+    public int getComandoEscolhido() {
+        return comandoEscolhido;
+    }
+
+    /**
+     * @param comandoEscolhido the comandoEscolhido to set
+     */
+    public void setComandoEscolhido(int comandoEscolhido) {
+        this.comandoEscolhido = comandoEscolhido;
     }
     
     
