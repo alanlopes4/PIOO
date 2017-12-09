@@ -5,6 +5,7 @@
  */
 package pokemon;
 
+import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
@@ -206,8 +207,19 @@ public abstract class Ataque {
     }
     
     public boolean calculoAcerto(Pokemon pk_usuario, Pokemon pk_adversario){
-        double prob = this.accuracy * (pk_usuario.getModifierAccuracy()/pk_adversario.getModifierEvasion());
-        return true;
+        if(pk_usuario.getPriStatus() == Status.FROZEN || pk_usuario.getPriStatus() == Status.SLEEP || pk_usuario.isFlinch()){
+            System.out.println("Ataque nao pode ser realizado! Status do pokemon é "+ (pk_usuario.isFlinch()? "FLINCH" : pk_usuario.getPriStatus()));
+            return false;
+        }else{
+            double prob = this.accuracy * (pk_usuario.getModifierAccuracy()/pk_adversario.getModifierEvasion());
+            if(pk_usuario.getPriStatus() == Status.PARALYSIS){
+                System.out.println("Status: PARALYSIS, probabilidade de acerto reduzia em 25%");
+                prob -= 25;
+            }
+        Random random = new Random();
+        return (random.nextInt(100) < prob);
+        }
+        
     }
 
     /**
