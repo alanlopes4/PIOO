@@ -11,7 +11,7 @@ import java.util.concurrent.ThreadLocalRandom;
  *
  * @author sylar
  */
-public class Ataque {
+public abstract class Ataque {
     
     private int id;
     private String nome;
@@ -38,21 +38,12 @@ public class Ataque {
     
     
     
-    public void efeito(Pokemon pk_usuario, Pokemon pk_adversario){
-        
-        this.ppAtual -=1;
-        if(calculoAcerto(pk_usuario, pk_adversario)){
-            double dano = calculoDano(pk_usuario, pk_adversario);
-            pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
-                        
-        }
-        
-    }
+    public abstract void efeito(Pokemon pk_usuario, Pokemon pk_adversario);
     
     //verificar
     public  boolean calculoCritico(double spd){
         double retorno = spd / 512;
-        if(retorno>0.5)
+        if(ThreadLocalRandom.current().nextInt(0, 100) <retorno)
             return true;
         else
             return false;

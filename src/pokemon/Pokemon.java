@@ -23,13 +23,10 @@ public class Pokemon {
   private int modifierDef;
   private int modifierSpe;
   private int modifierSpd;
-  private boolean confusuion;
+  private boolean confusion;
   private boolean flinch;
 
     public Pokemon() {
-        
-        
-        
         
         this.modifierAccuracy = 0;
         this.modifierAtk = 0;
@@ -37,6 +34,10 @@ public class Pokemon {
         this.modifierEvasion = 0;
         this.modifierSpd = 0;
         this.modifierSpe = 0;
+        this.confusion = false;
+        this.flinch = false;
+        this.priStatus = Status.OK;
+        
     }
   
   
@@ -48,13 +49,13 @@ public class Pokemon {
       switch(opcao)
         {
             //calcula atak
-            case 1 : retorno = this.atk + (Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion)); break;
+            case 1 : retorno = this.atk + ((Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion))); break;
             //calcula def
-            case 2 : retorno = this.def + (Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion)); break;
+            case 2 : retorno = this.def + ((Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion))); break;
             //calcula spd
-            case 3 : retorno = this.spd + (Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion)); break;
+            case 3 : retorno = this.spd + ((Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion))); break;
             //calcula spe
-            case 4 : retorno = this.spe + (Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion)); break;
+            case 4 : retorno = this.spe + ((Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion))); break;
                          
         } 
       
@@ -166,11 +167,11 @@ public class Pokemon {
     }
 
     public boolean isConfusuion() {
-        return confusuion;
+        return confusion;
     }
 
     public void setConfusuion(boolean confusuion) {
-        this.confusuion = confusuion;
+        this.confusion = confusuion;
     }
 
     public boolean isFlinch() {

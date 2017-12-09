@@ -6,6 +6,7 @@
 package util;
 
 import ataques.AtaqueCharge;
+import ataques.AtaqueComum;
 import ataques.AtaqueFixo;
 import ataques.AtaqueHP;
 import ataques.AtaqueModifier;
@@ -60,7 +61,7 @@ public class Leitor {
                         case "hp":
                             param = dados[7].trim().split(",");
                             ataques.add(new AtaqueHP(Integer.parseInt(dados[0]), dados[1],verificadorTipo(dados[2]), 0.0, Double.parseDouble(dados[3]), 
-                                    Double.parseDouble(dados[4]), Double.parseDouble(dados[5]), 0, Double.parseDouble(param[1].trim())));
+                                    Double.parseDouble(dados[4]), Double.parseDouble(dados[5]),param[0].equals("dano")?-1:Integer.parseInt(param[0].trim()), Double.parseDouble(param[1].trim())));
                             break;
                         case "multihit":
                             param = dados[7].trim().split(",");
@@ -75,7 +76,7 @@ public class Leitor {
                         case "fixo":
                             param = dados[7].trim().split(",");
                             ataques.add(new AtaqueFixo(Integer.parseInt(dados[0]), dados[1],verificadorTipo(dados[2]), 0.0, Double.parseDouble(dados[3]), 
-                                    Double.parseDouble(dados[4]), Double.parseDouble(dados[5]), param[0].equals("lvl")?0:Integer.parseInt(param[0].trim())));
+                                    Double.parseDouble(dados[4]), Double.parseDouble(dados[5]), param[0].equals("lvl")?-1:Integer.parseInt(param[0].trim())));
                             break;
                         case "status":
                             param = dados[7].trim().split(",");
@@ -87,7 +88,7 @@ public class Leitor {
                                     Double.parseDouble(dados[4]), Double.parseDouble(dados[5])));
                             break;
                         default:
-                            ataques.add(new Ataque(Integer.parseInt(dados[0]), dados[1],verificadorTipo(dados[2]), 0.0, Double.parseDouble(dados[3]), 
+                            ataques.add(new AtaqueComum(Integer.parseInt(dados[0]), dados[1],verificadorTipo(dados[2]), 0.0, Double.parseDouble(dados[3]), 
                                     Double.parseDouble(dados[4]), Double.parseDouble(dados[5])));
                             break;
                         

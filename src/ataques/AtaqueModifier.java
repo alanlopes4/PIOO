@@ -5,6 +5,7 @@
  */
 package ataques;
 
+import java.util.Random;
 import pokemon.Ataque;
 import pokemon.Pokemon;
 import pokemon.Tipo;
@@ -28,11 +29,29 @@ public class AtaqueModifier extends Ataque {
     
     
     
+    @Override
     public void efeito(Pokemon pk_usuario, Pokemon pk_adversario){
+         if(super.getPpAtual() >= 1){
+             super.setPpAtual(super.getPpAtual() - 1);
+              if(calculoAcerto(pk_usuario, pk_adversario)){
+                  double dano = 0.0;
+                  boolean aplicar = new Random().nextInt(100) < chance;
+                  if(aplicar)
+                      alterarModifier(pk_usuario, pk_adversario);
+ 
+                  dano = super.calculoDano(pk_usuario, pk_adversario);
+                  pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
+              }
+              else{
+                  System.out.println("Ataque errou o alvo!");
+              }
+        }else{
+              System.out.println("PP atual abaixo de 1, não pode atacar");
+        }     
         
-        double dano = super.calculoDano(pk_usuario, pk_adversario);
-        pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
-        
+    }
+    
+    public void alterarModifier(Pokemon pk_usuario, Pokemon pk_adversario){
         //acuracy
         if(this.mod == 1)
         {
@@ -100,9 +119,6 @@ public class AtaqueModifier extends Ataque {
                pk_adversario.setModifierSpe(pk_usuario.getModifierSpe() + n); 
             }
         }
-        
-        
-        
     }
 
     public int getMod() {

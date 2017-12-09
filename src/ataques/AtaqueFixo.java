@@ -1,17 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package ataques;
 
 import pokemon.Ataque;
+import pokemon.Pokemon;
 import pokemon.Tipo;
 
-/**
- *
- * @author sylar
- */
+
 public class AtaqueFixo extends Ataque {
     
     private int val;
@@ -22,10 +16,7 @@ public class AtaqueFixo extends Ataque {
     }
     
     
-    
-    public void efeito(){
-        
-    }
+  
 
     public int getVal() {
         return val;
@@ -34,7 +25,31 @@ public class AtaqueFixo extends Ataque {
     public void setVal(int val) {
         this.val = val;
     }
-    
+
+    @Override
+    public void efeito(Pokemon pk_usuario, Pokemon pk_adversario) {
+        if(super.getPpAtual() >= 1){
+             super.setPpAtual(super.getPpAtual() - 1);
+              if(calculoAcerto(pk_usuario, pk_adversario)){
+                  double dano = 0.0;
+                  //Se for ataque do tipo level
+                  if(val == -1)
+                      dano = pk_usuario.getLevel();
+                  else
+                      dano = val;  
+                  
+                  pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
+              }
+              else{
+                  System.out.println("Ataque errou o alvo!");
+              }
+        }else{
+              System.out.println("PP atual abaixo de 1, não pode atacar");
+        }
+        
+            
+        
+    }
     
     
 }
