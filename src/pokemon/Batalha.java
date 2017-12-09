@@ -132,7 +132,7 @@ public class Batalha {
                 int posicaoPokemon = entrada.nextInt();
                 usuario.trocarPokemon(posicaoPokemon);
             }else{
-                usuario.trocarPokemon(ThreadLocalRandom.current().nextInt(1, usuario.getTime().size() + 1));
+                usuario.trocarPokemon(ThreadLocalRandom.current().nextInt(1, usuario.getTime().size() - 1));
             }
             
         }
@@ -140,8 +140,14 @@ public class Batalha {
         else if(opcao == 2)
         {
             System.out.println("Qual ataque será executado?"); // 0 a 3
-            int posicaoAtaque = entrada.nextInt();
-            usuario.usarAtaque(posicaoAtaque, usuario.getTime().get(0), adversario.getTime().get(0));
+             if(usuario instanceof Humano){
+                int posicaoAtaque = entrada.nextInt();
+                usuario.usarAtaque(posicaoAtaque, usuario.getTime().get(0), adversario.getTime().get(0));
+             }
+             else
+             {
+                  usuario.usarAtaque(ThreadLocalRandom.current().nextInt(0, usuario.getTime().size() - 1), usuario.getTime().get(0), adversario.getTime().get(0));
+             }
             
         }
         else
