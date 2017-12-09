@@ -6,6 +6,7 @@
 package ataques;
 
 import pokemon.Ataque;
+import pokemon.Pokemon;
 import pokemon.Status;
 import pokemon.Tipo;
 
@@ -26,7 +27,14 @@ public class AtaqueStatus extends Ataque {
     
     
     
-    public void efeito(){
+    public void efeito(Pokemon pk_usuario, Pokemon pk_adversario){
+        
+        double dano = super.calculoDano(pk_usuario, pk_adversario);
+        pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
+        
+      
+        pk_adversario.setPriStatus(status);
+        
         
     }
 

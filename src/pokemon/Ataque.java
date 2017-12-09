@@ -5,6 +5,8 @@
  */
 package pokemon;
 
+import java.util.concurrent.ThreadLocalRandom;
+
 /**
  *
  * @author sylar
@@ -40,9 +42,9 @@ public class Ataque {
         
         this.ppAtual -=1;
         if(calculoAcerto(pk_usuario, pk_adversario)){
-            calculoCritico(pk_usuario.getSpd());
-            calculoDano(id, pk_usuario, pk_adversario, nome);
-            
+            double dano = calculoDano(pk_usuario, pk_adversario);
+            pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
+                        
         }
         
     }
@@ -57,7 +59,7 @@ public class Ataque {
 
     }
     
-    public boolean calculoDano(int level, Pokemon pk_usuario, Pokemon pk_adversario, String tipo){
+    public double calculoDano(Pokemon pk_usuario, Pokemon pk_adversario){
         double ataqueUsuario = 0.0, defesaOponete = 0.0;
         if(this.tipo == Tipo.NORMAL || this.tipo == Tipo.FIGHTING || this.tipo == Tipo.FLYING  || this.tipo == Tipo.GROUND || this.tipo == Tipo.ROCK || this.tipo == Tipo.BUG  || this.tipo == Tipo.GHOST  || this.tipo == Tipo.POISON )
         {
@@ -91,9 +93,13 @@ public class Ataque {
             dano *= 1.5;
         
         dano *= multiplicadorDano( pk_adversario);
+        
+        int r = ThreadLocalRandom.current().nextInt(217, 255);
+        
+        dano = (dano * r) / 255;
      
         
-        return true;
+        return dano;
     }
     
     
