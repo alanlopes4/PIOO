@@ -35,7 +35,7 @@ public class AtaqueHP extends Ataque {
                   dano = super.calculoDano(pk_usuario, pk_adversario);
                   if(valor == -1)
                       heal = dano * porcentagem;
-                  else
+                  else if(valor == -2)
                       heal =  pk_usuario.getHpMax() * porcentagem;
                   
                   comportamentoAtaque(pk_usuario, pk_adversario, dano);

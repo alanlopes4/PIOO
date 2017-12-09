@@ -60,8 +60,15 @@ public class Leitor {
                     switch(dados[6]){
                         case "hp":
                             param = dados[7].trim().split(",");
+                            int n = 0;
+                            if(param[0].equals("dano"))
+                                n = -1;
+                            else if(param[0].equals("max_hp"))
+                                n = -2;
+                            else
+                                n = Integer.parseInt(param[0].trim());
                             ataques.add(new AtaqueHP(Integer.parseInt(dados[0]), dados[1],verificadorTipo(dados[2]), 0.0, Double.parseDouble(dados[3]), 
-                                    Double.parseDouble(dados[4]), Double.parseDouble(dados[5]),param[0].equals("dano")?-1:Integer.parseInt(param[0].trim()), Double.parseDouble(param[1].trim())));
+                                    Double.parseDouble(dados[4]), Double.parseDouble(dados[5]),n, Double.parseDouble(param[1].trim())));
                             break;
                         case "multihit":
                             param = dados[7].trim().split(",");
