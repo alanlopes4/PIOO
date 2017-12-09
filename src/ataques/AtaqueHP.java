@@ -38,7 +38,7 @@ public class AtaqueHP extends Ataque {
                   else
                       heal =  pk_usuario.getHpMax() * porcentagem;
                   
-                  pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
+                  comportamentoAtaque(pk_usuario, pk_adversario, dano);
                   
                   if(pk_usuario.getPriStatus() != Status.FAINTED){
                     if (pk_usuario.getHpAtual() + heal > pk_usuario.getHpMax())

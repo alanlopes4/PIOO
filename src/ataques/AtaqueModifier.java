@@ -40,7 +40,7 @@ public class AtaqueModifier extends Ataque {
                       alterarModifier(pk_usuario, pk_adversario);
  
                   dano = super.calculoDano(pk_usuario, pk_adversario);
-                  pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
+                  comportamentoAtaque(pk_usuario, pk_adversario, dano);
               }
               else{
                   System.out.println("Ataque errou o alvo!");

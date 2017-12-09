@@ -25,7 +25,7 @@ public class AtaqueComum extends Ataque {
         
         if(calculoAcerto(pk_usuario, pk_adversario)){
             double dano = calculoDano(pk_usuario, pk_adversario);
-            pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
+            comportamentoAtaque(pk_usuario, pk_adversario, dano);
                         
         }
         

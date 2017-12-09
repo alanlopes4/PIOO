@@ -38,7 +38,7 @@ public class AtaqueFixo extends Ataque {
                   else
                       dano = val;  
                   
-                  pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
+                  comportamentoAtaque(pk_usuario, pk_adversario, dano);
               }
               else{
                   System.out.println("Ataque errou o alvo!");

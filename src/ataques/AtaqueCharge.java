@@ -4,6 +4,7 @@ package ataques;
 import pokemon.Ataque;
 import pokemon.Pokemon;
 import pokemon.Tipo;
+import util.Leitor;
 
 /**
  *
@@ -23,7 +24,7 @@ public class AtaqueCharge extends Ataque {
                   double dano = 0.0;
                   dano = calculoDano(pk_usuario, pk_adversario);
                   dano *=1.75;
-                  pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
+                  comportamentoAtaque(pk_usuario, pk_adversario, dano);
               }
               else{
                   System.out.println("Ataque errou o alvo!");

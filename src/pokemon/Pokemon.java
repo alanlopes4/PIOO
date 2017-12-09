@@ -174,7 +174,7 @@ public class Pokemon {
         this.modifierSpd = modifierSpd;
     }
 
-    public boolean isConfusuion() {
+    public boolean isConfusion() {
         return confusion;
     }
 

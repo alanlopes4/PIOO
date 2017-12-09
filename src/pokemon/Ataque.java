@@ -5,6 +5,7 @@
  */
 package pokemon;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Random;
@@ -60,6 +61,7 @@ public abstract class Ataque {
             ataqueUsuario = pk_usuario.getAtk();
             defesaOponete = pk_adversario.getDef();
         }
+        //verificar para o tipo2
         else if(this.tipo == Tipo.FIRE  || this.tipo == Tipo.WATER || this.tipo == Tipo.ELETRIC || this.tipo == Tipo.GRASS || this.tipo == Tipo.ICE || this.tipo == Tipo.PSYCHIC || this.tipo == Tipo.DRAGON)
         {
              ataqueUsuario = pk_usuario.getSpe();
@@ -69,8 +71,14 @@ public abstract class Ataque {
         if(calculoCritico(pk_usuario.getSpd()))
             pk_usuario.setLevel(pk_usuario.getLevel()*2); 
         
-        if(pk_usuario.getPriStatus() == Status.BURN)
+        
+        
+        if(pk_usuario.getPriStatus() == Status.BURN){
             pk_usuario.setAtk(pk_usuario.getAtk()/2);
+            System.out.println("Status BURN. Ataque reduzido em 50%");
+        }
+        
+        
         
         if(pk_usuario.getAtk()<0)
             pk_usuario.setAtk(0);
@@ -87,13 +95,36 @@ public abstract class Ataque {
             dano *= 1.5;
         
         dano *= multiplicadorDano( pk_adversario);
-        
-        int r = ThreadLocalRandom.current().nextInt(217, 255);
-        
+        int r = ThreadLocalRandom.current().nextInt(217, 256);
         dano = (dano * r) / 255;
      
-        
         return dano;
+    }
+    
+    public void comportamentoAtaque(Pokemon pk_usuario, Pokemon pk_adversario, double dano){
+        String ans = " ";
+        if(pk_usuario.isConfusion()) {
+            if(new Random().nextInt(100) < 50) {
+                pk_usuario.setHpAtual(pk_usuario.getHpAtual() - dano);
+                System.out.printf("Status CONFUSION. %s  causou %.2f dano em si próprio.\n", pk_usuario.getEspecie().getNome(), dano);
+            } else {
+                if(pk_adversario.getHpAtual() - dano <= 0.0) {
+                    pk_adversario.setHpAtual(0);
+                    pk_adversario.setPriStatus(Status.FAINTED);
+                } else {
+                    pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
+                }
+                System.out.printf("%s  causou %.2f em %s\n", pk_usuario.getEspecie().getNome(), dano, pk_adversario.getEspecie().getNome());
+            }
+        } else {
+            if(pk_adversario.getHpAtual() - dano <= 0.0) {
+                pk_adversario.setHpAtual(0);
+                pk_adversario.setPriStatus(Status.FAINTED);
+            } else {
+                pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
+            }
+            System.out.printf(" %s causou %.2f em %s\n", pk_usuario.getEspecie().getNome(), dano, pk_adversario.getEspecie().getNome());
+        }
     }
     
     
@@ -110,7 +141,6 @@ public abstract class Ataque {
             else if(pk_adversario.getEspecie().getTipo1() == Tipo.FLYING || pk_adversario.getEspecie().getTipo1() == Tipo.POISON || pk_adversario.getEspecie().getTipo1() == Tipo.BUG
                     || pk_adversario.getEspecie().getTipo1() == Tipo.PSYCHIC)
                 return 0.5;
-          
         }
          else if(this.tipo == Tipo.FLYING){
             if(pk_adversario.getEspecie().getTipo1() == Tipo.FIGHTING || pk_adversario.getEspecie().getTipo1() == Tipo.BUG || pk_adversario.getEspecie().getTipo1() == Tipo.GRASS  )
@@ -203,8 +233,6 @@ public abstract class Ataque {
             if(pk_adversario.getEspecie().getTipo1() == Tipo.DRAGON )
                 return 2;
         }
-        
-            
         return 1.0;
     }
     
