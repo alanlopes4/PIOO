@@ -5,6 +5,8 @@
  */
 package pokemon;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -41,7 +43,7 @@ public abstract class Ataque {
     
     public abstract void efeito(Pokemon pk_usuario, Pokemon pk_adversario);
     
-    //verificar
+    
     public  boolean calculoCritico(double spd){
         double retorno = spd / 512;
         if(ThreadLocalRandom.current().nextInt(0, 100) <retorno)
@@ -211,7 +213,7 @@ public abstract class Ataque {
             System.out.println("Ataque nao pode ser realizado! Status do pokemon é "+ (pk_usuario.isFlinch()? "FLINCH" : pk_usuario.getPriStatus()));
             return false;
         }else{
-            double prob = this.accuracy * (pk_usuario.getModifierAccuracy()/pk_adversario.getModifierEvasion());
+            double prob = this.accuracy * (getModifier(pk_usuario.getModifierAccuracy()/pk_adversario.getModifierEvasion()));
             if(pk_usuario.getPriStatus() == Status.PARALYSIS){
                 System.out.println("Status: PARALYSIS, probabilidade de acerto reduzia em 25%");
                 prob -= 25;
@@ -220,6 +222,39 @@ public abstract class Ataque {
         return (random.nextInt(100) < prob);
         }
         
+    }
+    
+    public static int getModifier(int mod) {
+        switch(mod){
+            case -6:
+                return 33;
+            case -5:
+                return 37;
+            case -4:
+                return 43;
+            case -3:
+                return 50;
+            case -2:
+                return 60;
+            case -1:
+                return 75;
+            case 0:
+                return 100;
+            case 1:
+                return 133;
+            case 2:
+                return 166;
+            case 3:
+                return 200;
+            case 4:
+                return 233;
+            case 5:
+                return 266;
+            case 6:
+                return 300;
+            default:
+                return 1;
+        }
     }
 
     /**
