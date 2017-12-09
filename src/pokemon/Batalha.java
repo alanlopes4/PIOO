@@ -117,19 +117,19 @@ public class Batalha {
         }
     }
     
-    public void executarturno(Jogador jogador){
+    public void executarturno(Jogador usuario, Jogador adversario){
         
-        int opcao = jogador.getComandoEscolhido();
+        int opcao = usuario.getComandoEscolhido();
         Scanner entrada = new Scanner(System.in);
         //troca
         if(opcao == 1)
         {
             System.out.println("Qual pokemon será trocado?"); // 1 a 5
-            if(jogador instanceof Humano){
+            if(usuario instanceof Humano){
                 int posicaoPokemon = entrada.nextInt();
-                jogador.trocarPokemon(posicaoPokemon);
+                usuario.trocarPokemon(posicaoPokemon);
             }else{
-                jogador.trocarPokemon(ThreadLocalRandom.current().nextInt(1, jogador.getTime().size() + 1));
+                usuario.trocarPokemon(ThreadLocalRandom.current().nextInt(1, usuario.getTime().size() + 1));
             }
             
         }
@@ -138,7 +138,7 @@ public class Batalha {
         {
             System.out.println("Qual ataque será executado?"); // 0 a 3
             int posicaoAtaque = entrada.nextInt();
-            jogador.usarAtaque(posicaoAtaque);
+            usuario.usarAtaque(posicaoAtaque, usuario.getTime().get(0), adversario.getTime().get(0));
             
         }
         else
@@ -159,13 +159,13 @@ public class Batalha {
         //escolheu comando trocar pokemon
         if(this.jogador1.getComandoEscolhido() == 1)
         {
-            executarturno(jogador1);
-            executarturno(jogador2);
+            executarturno(jogador1, jogador2);
+            executarturno(jogador2, jogador1);
         }
         else if(this.jogador2.getComandoEscolhido() == 1)
         {
-           executarturno(jogador2);
-           executarturno(jogador1); 
+           executarturno(jogador2, jogador1);
+           executarturno(jogador1, jogador2); 
         }
         else
         {
@@ -174,13 +174,13 @@ public class Batalha {
             
             if(spd1 > spd2)
             {
-                executarturno(jogador1);
-                executarturno(jogador2); 
+                executarturno(jogador1, jogador2);
+                executarturno(jogador2, jogador1); 
             }
             else
             {
-                executarturno(jogador2);
-                executarturno(jogador1); 
+                executarturno(jogador2, jogador1);
+                executarturno(jogador1, jogador2); 
             }
             
         }

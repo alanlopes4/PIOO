@@ -36,44 +36,180 @@ public class Ataque {
     
     
     
-    public void efeito(){
+    public void efeito(Pokemon pk_usuario, Pokemon pk_adversario){
+        
+        this.ppAtual -=1;
+        if(calculoAcerto(pk_usuario, pk_adversario)){
+            calculoCritico(pk_usuario.getSpd());
+            calculoDano(id, pk_usuario, pk_adversario, nome);
+            
+        }
         
     }
     
     //verificar
     public  boolean calculoCritico(double spd){
-        
         double retorno = spd / 512;
-        
-        return true;
-    }
-    
-    public boolean calculoDano(int level, Pokemon usuario, Pokemon oponente, String tipo){
-        double ataqueUsuario = 0.0, defesaOponete = 0.0;
-        if(tipo.equals("Normal") || tipo.equals("Fighting") || tipo.equals("Flying") || tipo.equals("Ground") || tipo.equals("Rock") || tipo.equals("Bug") || tipo.equals("Ghost") || tipo.equals("Poison"))
-        {
-            ataqueUsuario = usuario.getAtk();
-            defesaOponete = oponente.getDef();
-        }
-        else if(tipo.equals("Fire") || tipo.equals("Water") || tipo.equals("Electric") || tipo.equals("Grass") || tipo.equals("Ice") || tipo.equals("Psychic") || tipo.equals("Dragon"))
-        {
-             ataqueUsuario = usuario.getSpe();
-             defesaOponete = oponente.getSpe();
-        }
-        
-        if(calculoCritico(usuario.getSpd()))
-        {
-            level *= 2;
-        }
+        if(retorno>0.5)
+            return true;
         else
+            return false;
+
+    }
+    
+    public boolean calculoDano(int level, Pokemon pk_usuario, Pokemon pk_adversario, String tipo){
+        double ataqueUsuario = 0.0, defesaOponete = 0.0;
+        if(this.tipo == Tipo.NORMAL || this.tipo == Tipo.FIGHTING || this.tipo == Tipo.FLYING  || this.tipo == Tipo.GROUND || this.tipo == Tipo.ROCK || this.tipo == Tipo.BUG  || this.tipo == Tipo.GHOST  || this.tipo == Tipo.POISON )
         {
-            ataqueUsuario /= 2;
+            ataqueUsuario = pk_usuario.getAtk();
+            defesaOponete = pk_adversario.getDef();
         }
+        else if(this.tipo == Tipo.FIRE  || this.tipo == Tipo.WATER || this.tipo == Tipo.ELETRIC || this.tipo == Tipo.GRASS || this.tipo == Tipo.ICE || this.tipo == Tipo.PSYCHIC || this.tipo == Tipo.DRAGON)
+        {
+             ataqueUsuario = pk_usuario.getSpe();
+             defesaOponete = pk_adversario.getSpe();
+        }
+        
+        if(calculoCritico(pk_usuario.getSpd()))
+            pk_usuario.setLevel(pk_usuario.getLevel()*2); 
+        
+        if(pk_usuario.getPriStatus() == Status.BURN)
+            pk_usuario.setAtk(pk_usuario.getAtk()/2);
+        
+        if(pk_usuario.getAtk()<0)
+            pk_usuario.setAtk(0);
+        if(pk_adversario.getDef()<0)
+            pk_adversario.setDef(0);
+        if(pk_usuario.getAtk()>255)
+            pk_usuario.setAtk(255);
+        if(pk_adversario.getDef()>255)
+            pk_adversario.setDef(255);
+        
+        double dano = (pk_usuario.getLevel()*pk_usuario.getAtk()*this.power/pk_adversario.getDef()/50)+2;
+             
+        if(this.tipo == pk_usuario.getEspecie().getTipo1() || this.tipo == pk_usuario.getEspecie().getTipo2())
+            dano *= 1.5;
+        
+        dano *= multiplicadorDano( pk_adversario);
+     
         
         return true;
     }
     
-    public boolean calculoAcerto(){
+    
+    public double multiplicadorDano(Pokemon pk_adversario){
+        if(this.tipo == Tipo.NORMAL){
+            if(pk_adversario.getEspecie().getTipo1() == Tipo.ROCK )
+                return 0.5;
+            else if(pk_adversario.getEspecie().getTipo1() == Tipo.GHOST)
+                return 0;
+        }
+        else if(this.tipo == Tipo.FIGHTING){
+            if(pk_adversario.getEspecie().getTipo1() == Tipo.NORMAL || pk_adversario.getEspecie().getTipo1() == Tipo.ROCK || pk_adversario.getEspecie().getTipo1() == Tipo.ICE  )
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo1() == Tipo.FLYING || pk_adversario.getEspecie().getTipo1() == Tipo.POISON || pk_adversario.getEspecie().getTipo1() == Tipo.BUG
+                    || pk_adversario.getEspecie().getTipo1() == Tipo.PSYCHIC)
+                return 0.5;
+          
+        }
+         else if(this.tipo == Tipo.FLYING){
+            if(pk_adversario.getEspecie().getTipo1() == Tipo.FIGHTING || pk_adversario.getEspecie().getTipo1() == Tipo.BUG || pk_adversario.getEspecie().getTipo1() == Tipo.GRASS  )
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo1() == Tipo.ROCK || pk_adversario.getEspecie().getTipo1() == Tipo.ELETRIC )
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.POISON){
+            if(pk_adversario.getEspecie().getTipo1() == Tipo.BUG || pk_adversario.getEspecie().getTipo1() == Tipo.GRASS )
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo1() == Tipo.POISON || pk_adversario.getEspecie().getTipo1() == Tipo.GROUND || pk_adversario.getEspecie().getTipo1() == Tipo.ROCK
+                    || pk_adversario.getEspecie().getTipo1() == Tipo.GHOST)
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.GROUND){
+            if(pk_adversario.getEspecie().getTipo1() == Tipo.POISON || pk_adversario.getEspecie().getTipo1() == Tipo.ROCK || pk_adversario.getEspecie().getTipo1() == Tipo.FIRE
+                    || pk_adversario.getEspecie().getTipo1() == Tipo.ELETRIC)
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo1() == Tipo.BUG || pk_adversario.getEspecie().getTipo1() == Tipo.GRASS)
+                return 0.5;
+             else if(pk_adversario.getEspecie().getTipo1() == Tipo.FLYING )
+                 return 0;
+        }
+        else if(this.tipo == Tipo.ROCK){
+            if(pk_adversario.getEspecie().getTipo1() == Tipo.FLYING || pk_adversario.getEspecie().getTipo1() == Tipo.BUG || pk_adversario.getEspecie().getTipo1() == Tipo.FIRE
+                    || pk_adversario.getEspecie().getTipo1() == Tipo.ICE)
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo1() == Tipo.FIGHTING || pk_adversario.getEspecie().getTipo1() == Tipo.GROUND)
+                return 0.5;
+        }
+         else if(this.tipo == Tipo.BUG){
+            if(pk_adversario.getEspecie().getTipo1() == Tipo.POISON || pk_adversario.getEspecie().getTipo1() == Tipo.GRASS || pk_adversario.getEspecie().getTipo1() == Tipo.PSYCHIC
+                    )
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo1() == Tipo.FIGHTING || pk_adversario.getEspecie().getTipo1() == Tipo.FLYING || pk_adversario.getEspecie().getTipo1() == Tipo.GHOST
+                    || pk_adversario.getEspecie().getTipo1() == Tipo.FIRE)
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.GHOST){
+            if(pk_adversario.getEspecie().getTipo1() == Tipo.GHOST)
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo1() == Tipo.NORMAL || pk_adversario.getEspecie().getTipo1() == Tipo.PSYCHIC )
+                return 0.0;
+        }
+        else if(this.tipo == Tipo.FIRE){
+            if(pk_adversario.getEspecie().getTipo1() == Tipo.BUG ||pk_adversario.getEspecie().getTipo1() == Tipo.GRASS || pk_adversario.getEspecie().getTipo1() == Tipo.ICE)
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo1() == Tipo.ROCK || pk_adversario.getEspecie().getTipo1() == Tipo.FIRE || pk_adversario.getEspecie().getTipo1() == Tipo.WATER
+                    || pk_adversario.getEspecie().getTipo1() == Tipo.DRAGON)
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.WATER){
+            if(pk_adversario.getEspecie().getTipo1() == Tipo.GROUND ||pk_adversario.getEspecie().getTipo1() == Tipo.ROCK || pk_adversario.getEspecie().getTipo1() == Tipo.FIRE)
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo1() == Tipo.WATER || pk_adversario.getEspecie().getTipo1() == Tipo.GRASS
+                    || pk_adversario.getEspecie().getTipo1() == Tipo.DRAGON)
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.GRASS){
+            if(pk_adversario.getEspecie().getTipo1() == Tipo.GROUND ||pk_adversario.getEspecie().getTipo1() == Tipo.ROCK || pk_adversario.getEspecie().getTipo1() == Tipo.WATER)
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo1() == Tipo.FLYING || pk_adversario.getEspecie().getTipo1() == Tipo.POISON
+                    || pk_adversario.getEspecie().getTipo1() == Tipo.BUG || pk_adversario.getEspecie().getTipo1() == Tipo.FIRE || pk_adversario.getEspecie().getTipo1() == Tipo.GRASS
+                    || pk_adversario.getEspecie().getTipo1() == Tipo.DRAGON)
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.ELETRIC){
+            if(pk_adversario.getEspecie().getTipo1() == Tipo.FLYING ||pk_adversario.getEspecie().getTipo1() == Tipo.WATER )
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo1() == Tipo.GRASS || pk_adversario.getEspecie().getTipo1() == Tipo.ELETRIC
+                    || pk_adversario.getEspecie().getTipo1() == Tipo.DRAGON)
+                return 0.5;
+            else if(pk_adversario.getEspecie().getTipo1() == Tipo.GROUND )
+                return 0;
+        }
+        else if(this.tipo == Tipo.PSYCHIC){
+            if(pk_adversario.getEspecie().getTipo1() == Tipo.FIGHTING ||pk_adversario.getEspecie().getTipo1() == Tipo.POISON )
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo1() == Tipo.PSYCHIC )
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.ICE){
+            if(pk_adversario.getEspecie().getTipo1() == Tipo.FLYING ||pk_adversario.getEspecie().getTipo1() == Tipo.GROUND ||pk_adversario.getEspecie().getTipo1() == Tipo.GRASS
+                    ||pk_adversario.getEspecie().getTipo1() == Tipo.DRAGON)
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo1() == Tipo.WATER ||pk_adversario.getEspecie().getTipo1() == Tipo.ICE )
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.DRAGON){
+            if(pk_adversario.getEspecie().getTipo1() == Tipo.DRAGON )
+                return 2;
+        }
+        
+            
+        return 1.0;
+    }
+    
+    public boolean calculoAcerto(Pokemon pk_usuario, Pokemon pk_adversario){
+        double prob = this.accuracy * (pk_usuario.getModifierAccuracy()/pk_adversario.getModifierEvasion());
         return true;
     }
 

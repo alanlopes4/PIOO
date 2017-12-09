@@ -32,10 +32,10 @@ public abstract class Jogador {
           
     }
     
-    public void usarAtaque(int posicao){
+    public void usarAtaque(int posicao, Pokemon pk_usuario, Pokemon pk_adversario){
         
         //usando o ataque
-        getTime().get(0).getAtaque().get(posicao).efeito();
+        getTime().get(0).getAtaque().get(posicao).efeito(pk_usuario, pk_adversario);
         
         this.setComandoEscolhido(2);
         
