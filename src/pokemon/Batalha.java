@@ -113,7 +113,8 @@ public class Batalha {
                     pokemon.setAtaque(getAtaques().get(codigoAtaque - 1));                             
             }
             
-            //adcionando no time o pokemon do jogador
+            //adcionando no time o pokemon do 
+            pokemon.setIdentiricadorJogador(jogador.getNome());
             jogador.getTime().add(pokemon);
         }
     }
@@ -146,7 +147,10 @@ public class Batalha {
              }
              else
              {
-                  usuario.usarAtaque(ThreadLocalRandom.current().nextInt(0, usuario.getTime().size() - 1), usuario.getTime().get(0), adversario.getTime().get(0));
+                 if(usuario.getTime().size() == 1)
+                        usuario.usarAtaque(0, usuario.getTime().get(0), adversario.getTime().get(0));
+                 else
+                        usuario.usarAtaque(ThreadLocalRandom.current().nextInt(0, usuario.getTime().size() - 1), usuario.getTime().get(0), adversario.getTime().get(0));
              }
             
         }

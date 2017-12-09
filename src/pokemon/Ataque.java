@@ -106,7 +106,7 @@ public abstract class Ataque {
         if(pk_usuario.isConfusion()) {
             if(new Random().nextInt(100) < 50) {
                 pk_usuario.setHpAtual(pk_usuario.getHpAtual() - dano);
-                System.out.printf("Status CONFUSION. %s  causou %.2f dano em si próprio.\n", pk_usuario.getEspecie().getNome(), dano);
+                System.out.printf("Status CONFUSION. %s do jogador %d causou %.2f dano em si próprio.\n", pk_usuario.getEspecie().getNome(), pk_usuario.getIdentiricadorJogador(), dano);
             } else {
                 if(pk_adversario.getHpAtual() - dano <= 0.0) {
                     pk_adversario.setHpAtual(0);
@@ -114,7 +114,7 @@ public abstract class Ataque {
                 } else {
                     pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
                 }
-                System.out.printf("%s  causou %.2f em %s\n", pk_usuario.getEspecie().getNome(), dano, pk_adversario.getEspecie().getNome());
+                System.out.printf("%s do jogador %d causou %.2f em %s do jogador %d\n", pk_usuario.getEspecie().getNome(), pk_usuario.getIdentiricadorJogador(), dano, pk_adversario.getEspecie().getNome(), pk_adversario.getIdentiricadorJogador());
             }
         } else {
             if(pk_adversario.getHpAtual() - dano <= 0.0) {
@@ -123,7 +123,7 @@ public abstract class Ataque {
             } else {
                 pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
             }
-            System.out.printf(" %s causou %.2f em %s\n", pk_usuario.getEspecie().getNome(), dano, pk_adversario.getEspecie().getNome());
+            System.out.printf(" %s do jogador %d causou %.2f em %s do jogador %d\n", pk_usuario.getEspecie().getNome(), pk_usuario.getIdentiricadorJogador(), dano, pk_adversario.getEspecie().getNome(), pk_adversario.getIdentiricadorJogador());
         }
     }
     

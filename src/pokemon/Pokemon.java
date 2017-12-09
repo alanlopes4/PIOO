@@ -6,6 +6,9 @@ import java.util.List;
 
 public class Pokemon {
     
+  //identificar o jogador dono do pokemon
+  private int identiricadorJogador;
+    
   private List<Ataque> ataque = new ArrayList<>();
   private Especie especie = new Especie();
   private Status priStatus, secStatus;
@@ -245,6 +248,21 @@ public class Pokemon {
      */
     public void setSecStatus(Status secStatus) {
         this.secStatus = secStatus;
+    }
+
+
+    /**
+     * @return the identiricadorJogador
+     */
+    public int getIdentiricadorJogador() {
+        return identiricadorJogador;
+    }
+
+    /**
+     * @param identiricadorJogador the identiricadorJogador to set
+     */
+    public void setIdentiricadorJogador(int identiricadorJogador) {
+        this.identiricadorJogador = identiricadorJogador;
     }
   
   
