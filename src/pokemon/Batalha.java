@@ -73,16 +73,45 @@ public class Batalha {
                 escolherPokemons(jogador2);
             }
         }
+        while(verificarRodada(jogador1, jogador2)){
+            //Escolha dos comenandos
+            System.out.println("Primeiro jogador");
+            jogador1.escolherComando();
+            System.out.println("Segundo jogador");
+            jogador2.escolherComando();
+
+            //decide o primeiro a jogar e começa o turno
+            primeiroAJogar();
+        }
+        System.out.println("GAME OVER!! Jogador tal perdeu");
         
-        //Escolha dos comenandos
-        System.out.println("Primeiro jogador");
-        jogador1.escolherComando();
-        System.out.println("Segundo jogador");
-        jogador2.escolherComando();
-        
-        //decide o primeiro a jogar e começa o turno
-        primeiroAJogar();
-        
+    }
+    
+    public boolean verificarRodada(Jogador j1, Jogador j2){
+        ArrayList<Pokemon> pokemons_j1 = (ArrayList)j1.getTime();
+        ArrayList<Pokemon> pokemons_j2 = (ArrayList)j2.getTime();
+        boolean retorno_j1 = false, retorno_j2 = false;
+        Pokemon pkRemover = null;
+        for(Pokemon pk : pokemons_j1){
+            if(pk.getPriStatus() != Status.FAINTED)
+                retorno_j1 = true;  
+            else
+                pkRemover = pk;
+            
+        }
+        if(pkRemover != null){
+            pokemons_j1.remove(pkRemover);
+            pkRemover = null;
+        }
+        for(Pokemon pk : pokemons_j2){
+            if(pk.getPriStatus() != Status.FAINTED)
+                retorno_j2 = true;
+            else
+                pkRemover = pk;
+        }
+        if(pkRemover != null)
+            pokemons_j2.remove(pkRemover);
+        return (retorno_j1 && retorno_j2);
     }
     
     public void escolherPokemons(Jogador jogador)
@@ -99,6 +128,7 @@ public class Batalha {
             System.out.println("Código do pokemon:");
             int codigo = entrada.nextInt();
             pokemon.setEspecie(getEspecies().get(codigo - 1));
+            System.out.println("Pokemon escolhido: "+pokemon.getEspecie().getNome());
             
             System.out.println("Level do pokemon:");
             int level = entrada.nextInt();
@@ -109,13 +139,17 @@ public class Batalha {
             {
                 System.out.println( (j + 1) + "° Ataque:");
                 int codigoAtaque = entrada.nextInt();
-                if(codigoAtaque != 0)
-                    pokemon.setAtaque(getAtaques().get(codigoAtaque - 1));                             
+                if(codigoAtaque != 0){
+                    pokemon.setAtaque(getAtaques().get(codigoAtaque - 1));   
+                    System.out.println("Ataque escolhido: "+getAtaques().get(codigoAtaque - 1).getNome());
+                }
             }
             
             //adcionando no time o pokemon do 
             pokemon.setIdentiricadorJogador(jogador.getNome());
             jogador.getTime().add(pokemon);
+            
+            System.out.printf("");
         }
     }
     
@@ -124,40 +158,42 @@ public class Batalha {
         int opcao = usuario.getComandoEscolhido();
         Scanner entrada = new Scanner(System.in);
         
-        System.out.println("Jogador: "+usuario.getNome());
-        //troca
-        if(opcao == 1)
-        {
-            System.out.println("Qual pokemon será trocado?"); // 1 a 5
-            if(usuario instanceof Humano){
-                int posicaoPokemon = entrada.nextInt();
-                usuario.trocarPokemon(posicaoPokemon);
-            }else{
-                usuario.trocarPokemon(ThreadLocalRandom.current().nextInt(1, usuario.getTime().size() - 1));
+            System.out.println("Jogador: "+usuario.getNome());
+            //troca
+            if(opcao == 1)
+            {
+                System.out.println("Qual pokemon será trocado?"); // 1 a 5
+                if(usuario instanceof Humano){
+                    int posicaoPokemon = entrada.nextInt();
+                    usuario.trocarPokemon(posicaoPokemon);
+                }else{
+                    usuario.trocarPokemon(ThreadLocalRandom.current().nextInt(1, usuario.getTime().size() - 1));
+                }
+
             }
-            
-        }
-        //ataque
-        else if(opcao == 2)
-        {
-            System.out.println("Qual ataque será executado?"); // 0 a 3
-             if(usuario instanceof Humano){
-                int posicaoAtaque = entrada.nextInt();
-                usuario.usarAtaque(posicaoAtaque, usuario.getTime().get(0), adversario.getTime().get(0));
-             }
-             else
-             {
-                 if(usuario.getTime().size() == 1)
-                        usuario.usarAtaque(0, usuario.getTime().get(0), adversario.getTime().get(0));
+            //ataque
+            else if(opcao == 2)
+            {
+                System.out.println("Qual ataque será executado?"); // 0 a 3
+                 if(usuario instanceof Humano){
+                    int posicaoAtaque = entrada.nextInt();
+                    usuario.usarAtaque(posicaoAtaque, usuario.getTime().get(0), adversario.getTime().get(0));
+                 }
                  else
-                        usuario.usarAtaque(ThreadLocalRandom.current().nextInt(0, usuario.getTime().size() - 1), usuario.getTime().get(0), adversario.getTime().get(0));
-             }
-            
-        }
-        else
-        {
-           System.out.println("Opção invalida!"); 
-        }
+                 {
+                     if(usuario.getTime().size() == 1)
+                            usuario.usarAtaque(0, usuario.getTime().get(0), adversario.getTime().get(0));
+                     else
+                            usuario.usarAtaque(ThreadLocalRandom.current().nextInt(0, usuario.getTime().size() - 1), usuario.getTime().get(0), adversario.getTime().get(0));
+                 }
+
+            }
+            else
+            {
+               System.out.println("Opção invalida!"); 
+            }
+        
+        
     }
     
     //verificar o comportamento dos status
