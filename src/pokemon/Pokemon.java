@@ -28,6 +28,14 @@ public class Pokemon {
 
     public Pokemon() {
         
+        //executa o calculo dos atribuso
+        this.hpAtual = this.especie.calcularAtributo(this.level, 1);
+        this.hpMax = this.especie.calcularAtributo(this.level, 1);
+        this.atk = this.especie.calcularAtributo(this.level, 2);
+        this.def = this.especie.calcularAtributo(this.level, 3);
+        this.spe = this.especie.calcularAtributo(this.level, 4);
+        this.spd = this.especie.calcularAtributo(this.level, 5);
+       
         this.modifierAccuracy = 0;
         this.modifierAtk = 0;
         this.modifierDef = 0;
@@ -49,13 +57,13 @@ public class Pokemon {
       switch(opcao)
         {
             //calcula atak
-            case 1 : retorno = this.atk + ((Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion))); break;
+            case 1 : retorno = this.atk + (((Math.max(2, 2 + Ataque.getModifier(this.modifierAtk))) / (Math.max(2, 2 - Ataque.getModifier(this.modifierEvasion)))) * 0.01); break;
             //calcula def
-            case 2 : retorno = this.def + ((Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion))); break;
+            case 2 : retorno = this.def + (((Math.max(2, 2 + Ataque.getModifier(this.modifierDef))) / (Math.max(2, 2 - Ataque.getModifier(this.modifierDef)))) * 0.01); break;
             //calcula spd
-            case 3 : retorno = this.spd + ((Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion))); break;
+            case 3 : retorno = this.spd + (((Math.max(2, 2 + Ataque.getModifier(this.modifierSpd))) / (Math.max(2, 2 - Ataque.getModifier(this.modifierSpd)))) * 0.01); break;
             //calcula spe
-            case 4 : retorno = this.spe + ((Math.max(2, 2 + this.modifierAccuracy)) / (Math.max(2, 2 - this.modifierEvasion))); break;
+            case 4 : retorno = this.spe + (((Math.max(2, 2 + Ataque.getModifier(this.modifierSpe))) / (Math.max(2, 2 - Ataque.getModifier(this.modifierSpe)))) * 0.01); break;
                          
         } 
       
