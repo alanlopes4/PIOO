@@ -13,7 +13,7 @@ import java.util.List;
  * @author sylar
  */
 public abstract class Jogador {
-    
+    private int nome;
     private List<Pokemon> time = new ArrayList<Pokemon>();
     private int comandoEscolhido;
     
@@ -41,7 +41,16 @@ public abstract class Jogador {
         
     }
 
+    public int getNome() {
+        return nome;
+    }
 
+    public void setNome(int nome) {
+        this.nome = nome;
+    }
+
+
+    
     /**
      * @return the time
      */

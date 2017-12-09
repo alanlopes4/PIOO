@@ -47,7 +47,7 @@ public class Batalha {
                 //escolha dos jogadores
                 if(escolha == 1)
                 {
-                    jogador1 = new Humano();   
+                    jogador1 = new Humano();
                 }
                 else
                 {
@@ -55,6 +55,7 @@ public class Batalha {
                 }
                 
                 //escolha dos pokemons
+                jogador1.setNome(1);
                 escolherPokemons(jogador1);
                 
             }
@@ -68,7 +69,7 @@ public class Batalha {
                 {
                     jogador2 = new Maquina();
                 }
-                
+                jogador2.setNome(2);
                 escolherPokemons(jogador2);
             }
         }
@@ -121,6 +122,8 @@ public class Batalha {
         
         int opcao = usuario.getComandoEscolhido();
         Scanner entrada = new Scanner(System.in);
+        
+        System.out.println("Jogador: "+usuario.getNome());
         //troca
         if(opcao == 1)
         {

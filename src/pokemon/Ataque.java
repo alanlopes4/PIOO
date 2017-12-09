@@ -241,7 +241,7 @@ public abstract class Ataque {
             System.out.println("Ataque nao pode ser realizado! Status do pokemon é "+ (pk_usuario.isFlinch()? "FLINCH" : pk_usuario.getPriStatus()));
             return false;
         }else{
-            double prob = this.accuracy * (getModifier(pk_usuario.getModifierAccuracy()/pk_adversario.getModifierEvasion()));
+            double prob = this.accuracy * (getModifier(getModifier(pk_usuario.getModifierAccuracy())/getModifier(pk_adversario.getModifierEvasion())));
             if(pk_usuario.getPriStatus() == Status.PARALYSIS){
                 System.out.println("Status: PARALYSIS, probabilidade de acerto reduzia em 25%");
                 prob -= 25;
