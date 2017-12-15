@@ -43,6 +43,10 @@ public class Batalha {
             System.out.println("Escolha o " + i + "° Jogador:");
             System.out.println("Deseja ser 1 - Humano ou 0 - Computador?"); 
             int escolha = entrada.nextInt();
+            while(escolha != 0  && escolha != 1){
+                System.out.println("Opção inválida! Por favor, escolha 0 ou 1");
+                escolha = entrada.nextInt();
+            }
             if(i == 1)
             {
                 //escolha dos jogadores
