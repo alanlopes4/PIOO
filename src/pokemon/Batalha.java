@@ -79,12 +79,13 @@ public class Batalha {
         }
         int turno =0;
         while(verificarRodada(jogador1, jogador2)){
-            System.out.println("###################### TURNO "+ ++turno +"######################");
+            System.out.println("###################### TURNO "+ ++turno +" ######################");
+            System.out.println("");
             //Escolha dos comenandos
-            System.out.println("Primeiro jogador");
+            System.out.println(" ---------- Jogador " + jogador1.getNome() + " ---------- ");
             showInformacaoTime(jogador1);
             jogador1.escolherComando();
-            System.out.println("Segundo jogador");
+            System.out.println(" ---------- Jogador " + jogador2.getNome() + " ---------- ");
             showInformacaoTime(jogador2);
             jogador2.escolherComando();
 
@@ -100,7 +101,7 @@ public class Batalha {
      */
     public void showInformacaoTime(Jogador jogador)
     {
-            System.out.println(" ############### TIME ############### ");
+            System.out.println("############### TIME ############### ");
             ArrayList<Pokemon> time = (ArrayList<Pokemon>) jogador.getTime();
              
             for(Pokemon poke : time)
@@ -117,7 +118,8 @@ public class Batalha {
                 }
             }
              System.out.println("");
-            System.out.println(" ############################## ");
+            System.out.println("############################## ");
+            System.out.println("");
     }
     
     /**
@@ -214,7 +216,7 @@ public class Batalha {
         if(verificarRodada(usuario, adversario)){
         int opcao = usuario.getComandoEscolhido();
         Scanner entrada = new Scanner(System.in);
-        System.out.println("Jogador "+usuario.getNome());
+        System.out.println(" ---------- Jogador " + usuario.getNome() + " ---------- ");
             //troca
            
             if(opcao == 1)

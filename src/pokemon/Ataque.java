@@ -75,7 +75,9 @@ public abstract class Ataque {
         
         if(pk_usuario.getPriStatus() == Status.BURN){
             pk_usuario.setAtk(pk_usuario.getAtk()/2);
+            System.out.println("--------------------");
             System.out.println("Status BURN. Ataque reduzido em 50%");
+            System.out.println("--------------------");
         }
         
         
@@ -109,6 +111,7 @@ public abstract class Ataque {
         if(pk_usuario.isConfusion()) {
             if(new Random().nextInt(100) < 50) {
                 pk_usuario.setHpAtual(pk_usuario.getHpAtual() - dano);
+                System.out.println("-------------------- INFORMAÇÃO --------------------");
                 System.out.printf("Status CONFUSION. %s do jogador %d causou %.2f dano em si próprio.\n", pk_usuario.getEspecie().getNome(), pk_usuario.getIdentiricadorJogador(), dano);
             } else {
                 if(pk_adversario.getHpAtual() - dano <= 0.0) {
@@ -117,6 +120,7 @@ public abstract class Ataque {
                 } else {
                     pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
                 }
+                System.out.println("-------------------- INFORMAÇÃO --------------------");
                 System.out.printf("%s do jogador %d causou %.2f em %s do jogador %d\n", pk_usuario.getEspecie().getNome(), pk_usuario.getIdentiricadorJogador(), dano, pk_adversario.getEspecie().getNome(), pk_adversario.getIdentiricadorJogador());
             }
         } else {
@@ -126,10 +130,12 @@ public abstract class Ataque {
             } else {
                 pk_adversario.setHpAtual(pk_adversario.getHpAtual() - dano);
             }
-            System.out.printf(" %s do jogador %d causou %.2f em %s do jogador %d\n", pk_usuario.getEspecie().getNome(), pk_usuario.getIdentiricadorJogador(), dano, pk_adversario.getEspecie().getNome(), pk_adversario.getIdentiricadorJogador());
+            System.out.println("-------------------- INFORMAÇÃO --------------------");
+            System.out.printf("%s do jogador %d causou %.2f em %s do jogador %d\n", pk_usuario.getEspecie().getNome(), pk_usuario.getIdentiricadorJogador(), dano, pk_adversario.getEspecie().getNome(), pk_adversario.getIdentiricadorJogador());
         }
         System.out.println("Resultado: ");
         System.out.printf("%s do jogador %d - Hp Atual: %.2f\n", pk_adversario.getEspecie().getNome(), pk_adversario.getIdentiricadorJogador(), pk_adversario.getHpAtual());
+        System.out.println("----------------------------------------");
     }
     
     

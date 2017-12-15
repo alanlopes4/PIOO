@@ -29,9 +29,9 @@ public abstract class Jogador {
         getTime().set(posicao, substituido);
         
         this.setComandoEscolhido(1);
-        
+        System.out.println("--------------------");
         System.out.println("Pokemon " + substituido.getEspecie().getNome() + " foi trocado por " + novo.getEspecie().getNome());
-          
+        System.out.println("--------------------");  
     }
     /**
      * Usa o ataque escolhido no pokemon adversário
