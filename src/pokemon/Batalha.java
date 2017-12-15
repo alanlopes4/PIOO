@@ -7,6 +7,7 @@ package pokemon;
 
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import util.Leitor;
@@ -76,8 +77,10 @@ public class Batalha {
         while(verificarRodada(jogador1, jogador2)){
             //Escolha dos comenandos
             System.out.println("Primeiro jogador");
+            showInformacaoTime(jogador1);
             jogador1.escolherComando();
             System.out.println("Segundo jogador");
+            showInformacaoTime(jogador2);
             jogador2.escolherComando();
 
             //decide o primeiro a jogar e começa o turno
@@ -85,6 +88,27 @@ public class Batalha {
         }
         System.out.println("GAME OVER!! Jogador tal perdeu");
         
+    }
+    
+    public void showInformacaoTime(Jogador jogador)
+    {
+            System.out.println(" ############### TIME ############### ");
+            ArrayList<Pokemon> time = (ArrayList<Pokemon>) jogador.getTime();
+            
+            for(Pokemon poke : time)
+            {
+                ArrayList<Ataque> ataques = (ArrayList<Ataque>) poke.getAtaque();
+                System.out.println("");
+                System.out.println("Pokemon - " + time.indexOf(poke) + " : " + poke.getEspecie().getNome());
+                System.out.println("HP Atual: " + poke.getHpAtual());
+                System.out.println("Status: " + poke.getPriStatus());
+                System.out.println("Ataques: ");
+                for(Ataque atk : ataques )
+                {
+                    System.out.println("Ataque - " + ataques.indexOf(atk) + " : " + atk.getNome());
+                }
+            }
+            System.out.println(" ############################## ");
     }
     
     public boolean verificarRodada(Jogador j1, Jogador j2){
@@ -122,17 +146,19 @@ public class Batalha {
         for(int i = 0; i < quantidade; i++)
         {
             
-            Pokemon pokemon = new Pokemon();
+           
             
             System.out.println( (i + 1) + "° Pokemon:");
             System.out.println("Código do pokemon:");
             int codigo = entrada.nextInt();
+            System.out.println("Level do pokemon:");
+            int level = entrada.nextInt();
+            Especie especie = getEspecies().get(codigo - 1);
+            Pokemon pokemon = new Pokemon(especie, level);
             pokemon.setEspecie(getEspecies().get(codigo - 1));
             System.out.println("Pokemon escolhido: "+pokemon.getEspecie().getNome());
             
-            System.out.println("Level do pokemon:");
-            int level = entrada.nextInt();
-            pokemon.setLevel(level);
+            
             
             
             for(int j = 0; j < 4; j++)
@@ -157,25 +183,33 @@ public class Batalha {
         
         int opcao = usuario.getComandoEscolhido();
         Scanner entrada = new Scanner(System.in);
-        
-            System.out.println("Jogador: "+usuario.getNome());
+                   
             //troca
             if(opcao == 1)
-            {
-                System.out.println("Qual pokemon será trocado?"); // 1 a 5
+            {                
                 if(usuario instanceof Humano){
+                    System.out.println("Informe o código do novo pokemon?"); // 1 a 5
                     int posicaoPokemon = entrada.nextInt();
                     usuario.trocarPokemon(posicaoPokemon);
                 }else{
-                    usuario.trocarPokemon(ThreadLocalRandom.current().nextInt(1, usuario.getTime().size() - 1));
+                    
+                    if(usuario.getTime().size() >= 3)
+                    {
+                        usuario.trocarPokemon(ThreadLocalRandom.current().nextInt(1, usuario.getTime().size() - 1)); 
+                    }
+                    else
+                    {
+                        usuario.trocarPokemon(1);
+                    }
                 }
 
             }
             //ataque
             else if(opcao == 2)
             {
-                System.out.println("Qual ataque será executado?"); // 0 a 3
+                
                  if(usuario instanceof Humano){
+                     System.out.println("Qual ataque será executado?"); // 0 a 3
                     int posicaoAtaque = entrada.nextInt();
                     usuario.usarAtaque(posicaoAtaque, usuario.getTime().get(0), adversario.getTime().get(0));
                  }

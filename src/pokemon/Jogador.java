@@ -23,12 +23,15 @@ public abstract class Jogador {
         
         //pokemon que sera subistituido
         Pokemon substituido = getTime().get(0);
+        Pokemon novo = getTime().get(posicao);
         
         //realiza a troca dos pokemons
-        getTime().set(0, getTime().get(posicao));    
+        getTime().set(0, novo);    
         getTime().set(posicao, substituido);
         
         this.setComandoEscolhido(1);
+        
+        System.out.println("Pokemon " + substituido.getEspecie().getNome() + " foi trocado por " + novo.getEspecie().getNome());
           
     }
     

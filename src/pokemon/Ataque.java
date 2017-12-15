@@ -125,6 +125,8 @@ public abstract class Ataque {
             }
             System.out.printf(" %s do jogador %d causou %.2f em %s do jogador %d\n", pk_usuario.getEspecie().getNome(), pk_usuario.getIdentiricadorJogador(), dano, pk_adversario.getEspecie().getNome(), pk_adversario.getIdentiricadorJogador());
         }
+        System.out.println("Resultado: ");
+        System.out.printf("%s do jogador %d - Hp Atual: %.2f\n", pk_adversario.getEspecie().getNome(), pk_adversario.getIdentiricadorJogador(), pk_adversario.getHpAtual());
     }
     
     

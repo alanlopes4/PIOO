@@ -29,9 +29,34 @@ public class Pokemon {
   private boolean confusion;
   private boolean flinch;
 
+  //comentario adicionado
     public Pokemon() {
         
         //executa o calculo dos atribuso
+        this.hpAtual = this.especie.calcularAtributo(this.level, 1);
+        this.hpMax = this.especie.calcularAtributo(this.level, 1);
+        this.atk = this.especie.calcularAtributo(this.level, 2);
+        this.def = this.especie.calcularAtributo(this.level, 3);
+        this.spe = this.especie.calcularAtributo(this.level, 4);
+        this.spd = this.especie.calcularAtributo(this.level, 5);
+       
+        this.modifierAccuracy = 0;
+        this.modifierAtk = 0;
+        this.modifierDef = 0;
+        this.modifierEvasion = 0;
+        this.modifierSpd = 0;
+        this.modifierSpe = 0;
+        this.confusion = false;
+        this.flinch = false;
+        this.priStatus = Status.OK;
+        
+    }
+    
+    public Pokemon(Especie especie, int level) {
+        
+        //executa o calculo dos atribuso
+        this.level = level;
+        this.especie = especie;
         this.hpAtual = this.especie.calcularAtributo(this.level, 1);
         this.hpMax = this.especie.calcularAtributo(this.level, 1);
         this.atk = this.especie.calcularAtributo(this.level, 2);
