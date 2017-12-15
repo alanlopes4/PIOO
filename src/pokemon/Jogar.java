@@ -6,9 +6,6 @@
 package pokemon;
 
 import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
-
 /**
  *
  * @author sylar

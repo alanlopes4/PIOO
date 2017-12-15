@@ -146,6 +146,12 @@ public class Batalha {
         Scanner entrada = new Scanner(System.in);
         System.out.println("Quantidade de pokemons:");
         int quantidade = entrada.nextInt();
+        while(quantidade >6){
+            System.out.println("Quantidade acima de 6, por favor selecione um valor menor");
+            System.out.println("Quantidade de pokemons:");
+            quantidade = entrada.nextInt();
+        }
+        
         for(int i = 0; i < quantidade; i++)
         {
             
