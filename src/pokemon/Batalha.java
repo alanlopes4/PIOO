@@ -74,7 +74,9 @@ public class Batalha {
                 escolherPokemons(jogador2);
             }
         }
+        int turno =0;
         while(verificarRodada(jogador1, jogador2)){
+            System.out.println("###################### TURNO "+ ++turno +"######################");
             //Escolha dos comenandos
             System.out.println("Primeiro jogador");
             showInformacaoTime(jogador1);
@@ -94,11 +96,11 @@ public class Batalha {
     {
             System.out.println(" ############### TIME ############### ");
             ArrayList<Pokemon> time = (ArrayList<Pokemon>) jogador.getTime();
-            
+             
             for(Pokemon poke : time)
             {
                 ArrayList<Ataque> ataques = (ArrayList<Ataque>) poke.getAtaque();
-                System.out.println("");
+               System.out.println("");
                 System.out.println("Pokemon - " + time.indexOf(poke) + " : " + poke.getEspecie().getNome());
                 System.out.println("HP Atual: " + poke.getHpAtual());
                 System.out.println("Status: " + poke.getPriStatus());
@@ -108,6 +110,7 @@ public class Batalha {
                     System.out.println("Ataque - " + ataques.indexOf(atk) + " : " + atk.getNome());
                 }
             }
+             System.out.println("");
             System.out.println(" ############################## ");
     }
     
@@ -180,14 +183,17 @@ public class Batalha {
     }
     
     public void executarturno(Jogador usuario, Jogador adversario){
-        
+        if(verificarRodada(usuario, adversario)){
         int opcao = usuario.getComandoEscolhido();
         Scanner entrada = new Scanner(System.in);
-                   
+        System.out.println("Jogador "+usuario.getNome());
             //troca
+           
             if(opcao == 1)
-            {                
+            {              
+                
                 if(usuario instanceof Humano){
+                    showInformacaoTime(usuario);
                     System.out.println("Informe o código do novo pokemon?"); // 1 a 5
                     int posicaoPokemon = entrada.nextInt();
                     usuario.trocarPokemon(posicaoPokemon);
@@ -226,6 +232,7 @@ public class Batalha {
             {
                System.out.println("Opção invalida!"); 
             }
+    }
         
         
     }
