@@ -1,19 +1,19 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pokemon;
 
 import java.util.Scanner;
 
 /**
- *
- * @author sylar
+ * Classe respoonsável pelo jogador humano
+ * 
+ * @author Alan e Alisson
  */
 public class Humano extends Jogador{
     
        
+    /**
+     * Responsável pela definição dos comandos do Humano
+     * Caso deseja trocar de pokémon ou atacar o adversário
+     */
     @Override
     public void escolherComando(){
         int escolha = 0;

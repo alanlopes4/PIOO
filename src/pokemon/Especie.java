@@ -1,13 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pokemon;
 
 /**
- *
- * @author sylar
+ *Classe responsável pelo objeto especie
+ * @author Alan e Alisson
  */
 public class Especie {
     
@@ -22,7 +17,18 @@ public class Especie {
     private Tipo tipo1, tipo2;
 
     public Especie(){}
-    
+    /**
+     * Construtor que usa como parâmetros os dados retirados dos arquivos .txt para contruir um objeto do tipo Pokemon
+     * @param id
+     * @param nome
+     * @param tipo1
+     * @param tipo2
+     * @param baseHp
+     * @param baseAtk
+     * @param baseDef
+     * @param baseSpe
+     * @param baseSpd 
+     */
     public Especie(int id, String nome, Tipo tipo1, Tipo tipo2, double baseHp, double baseAtk, double baseDef, double baseSpe, double baseSpd) {
         this.id = id;
         this.nome = nome;
@@ -37,7 +43,12 @@ public class Especie {
     
     
     
-    
+    /**
+     * Retorna os atributos de um pokémon pertencente a espécie descrita, quando está no nível atual
+     * @param level
+     * @param opcao
+     * @return 
+     */
     public double calcularAtributo(int level, int opcao){
         
         double retorno = 0.0;
@@ -59,11 +70,14 @@ public class Especie {
         
         return retorno;
     }
-
+    /**
+     * 
+     * @return id
+     */
     public int getId() {
         return id;
     }
-
+    
     public void setId(int id) {
         this.id = id;
     }

@@ -1,16 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pokemon;
 
 import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
- * @author sylar
+ * Representa os jogadores que participam da batalha
+ * @author Alan e Alisson
  */
 public abstract class Jogador {
     private int nome;
@@ -19,6 +14,10 @@ public abstract class Jogador {
     
     public abstract void escolherComando();
     
+    /**
+     * Troca o pokemon da posição zero pela posição passada como parâmetro
+     * @param posicao 
+     */
     public void trocarPokemon(int posicao){
         
         //pokemon que sera subistituido
@@ -34,7 +33,12 @@ public abstract class Jogador {
         System.out.println("Pokemon " + substituido.getEspecie().getNome() + " foi trocado por " + novo.getEspecie().getNome());
           
     }
-    
+    /**
+     * Usa o ataque escolhido no pokemon adversário
+     * @param posicao
+     * @param pk_usuario
+     * @param pk_adversario 
+     */
     public void usarAtaque(int posicao, Pokemon pk_usuario, Pokemon pk_adversario){
         
         //usando o ataque

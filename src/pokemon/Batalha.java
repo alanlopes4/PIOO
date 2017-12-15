@@ -1,20 +1,14 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pokemon;
 
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 import java.util.concurrent.ThreadLocalRandom;
 import util.Leitor;
 
 /**
  *
- * @author sylar
+ * @author Alan e Alisson
  */
 public class Batalha {
     
@@ -23,7 +17,9 @@ public class Batalha {
     private ArrayList<Ataque> ataques = new ArrayList<Ataque>();
     
     
-    
+    /**
+     * Popula os ArrayList de especies e ataques com os dados retirados dos arquivos .txt
+     */
     public void carregarTabelas(){
         try{
             this.especies = Leitor.leitorEspecies();
@@ -34,7 +30,10 @@ public class Batalha {
         }
         
     }
-    
+    /**
+     * Inicializa os jogadores
+     * Define qual jogador (Humano ou Computador) o player será
+     */
     public void inicializarJogadores(){
         
         Scanner entrada = new Scanner(System.in);
@@ -95,7 +94,10 @@ public class Batalha {
         System.out.println("GAME OVER!! Jogador tal perdeu");
         
     }
-    
+    /**
+     * Mostra informações sobre o time do jogador, isto é, os pokemons que compõe o time e seus ataques
+     * @param jogador 
+     */
     public void showInformacaoTime(Jogador jogador)
     {
             System.out.println(" ############### TIME ############### ");
@@ -118,6 +120,12 @@ public class Batalha {
             System.out.println(" ############################## ");
     }
     
+    /**
+     * Verificar se os pokemons dos jogadores estão todos com o Status FAINTED
+     * @param j1
+     * @param j2
+     * @return 
+     */
     public boolean verificarRodada(Jogador j1, Jogador j2){
         ArrayList<Pokemon> pokemons_j1 = (ArrayList)j1.getTime();
         ArrayList<Pokemon> pokemons_j2 = (ArrayList)j2.getTime();
@@ -145,6 +153,10 @@ public class Batalha {
         return (retorno_j1 && retorno_j2);
     }
     
+    /**
+     * Escolhe os pokemons do jogador e os ataques 
+     * @param jogador 
+     */
     public void escolherPokemons(Jogador jogador)
     {
         Scanner entrada = new Scanner(System.in);
@@ -191,7 +203,13 @@ public class Batalha {
             System.out.printf("");
         }
     }
-    
+    /**
+     * Responsável por executar as rodadas 
+     * Define qual ação o jogador deseja executar na rodada
+     * Verifica se o jogador deseja trocar o pokemon atual ou atacar o oponente
+     * @param usuario
+     * @param adversario 
+     */
     public void executarturno(Jogador usuario, Jogador adversario){
         if(verificarRodada(usuario, adversario)){
         int opcao = usuario.getComandoEscolhido();
@@ -247,12 +265,14 @@ public class Batalha {
         
     }
     
-    //verificar o comportamento dos status
+    
     public void verificarComportamentoStatus()
     {
         
     }
-    
+    /**
+     * 
+     */
     public void primeiroAJogar()
     {
         
