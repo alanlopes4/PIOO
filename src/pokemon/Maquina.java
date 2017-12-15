@@ -1,18 +1,16 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package pokemon;
 
 
 /**
  *
- * @author sylar
+ * @author Alan e Alisson
  */
 public class Maquina extends Jogador{
     
-    
+    /**
+     * Responsável pela definição dos comandos da Maquina
+     * Caso deseja trocar de pokémon ou atacar o adversário
+     */
     @Override
     public void escolherComando(){
         int n = 0;

@@ -3,7 +3,10 @@ package pokemon;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Representa os pokémons que estão sendo usadas nas batalhas
+ * @author Alan e Alisson
+ */
 public class Pokemon {
     
   //identificar o jogador dono do pokemon
@@ -29,7 +32,9 @@ public class Pokemon {
   private boolean confusion;
   private boolean flinch;
 
-  //comentario adicionado
+    /**
+     * Construdor padrão, utilizado para inicializar as variáveis
+     */
     public Pokemon() {
         
         //executa o calculo dos atribuso
@@ -51,7 +56,11 @@ public class Pokemon {
         this.priStatus = Status.OK;
         
     }
-    
+    /**
+     * Construtor com parâmetros
+     * @param especie
+     * @param level 
+     */
     public Pokemon(Especie especie, int level) {
         
         //executa o calculo dos atribuso
@@ -77,7 +86,11 @@ public class Pokemon {
     }
   
   
-  
+  /**
+   * Utilizado para retornar um valor do atributo calculado, isto é, aplicado as regras 
+   * @param opcao
+   * @return 
+   */
   public double valorAtributo(int opcao){
       
       double retorno = 0.0;

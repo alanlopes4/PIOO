@@ -1,7 +1,6 @@
 package pokemon;
 
 import execao.ExcecaoPokemon;
-import java.util.List;
 /**
  * Classe executável responsável pela
  * @author Alan e Alisson
@@ -24,22 +23,6 @@ public class Jogar {
      }
         
         
-    }
-    
-    
-    
-    
-    public void primeiroAJogar(Batalha batalha)
-    {
-        
-    }
-    
-    
-    public void verificarStatusPokemons(List<Pokemon> pokemons)
-    {
-        for (Pokemon pokemon : pokemons) {
-            //if(pokemon)
-        }
     }
     
 }
