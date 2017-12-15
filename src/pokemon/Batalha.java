@@ -92,9 +92,23 @@ public class Batalha {
             //decide o primeiro a jogar e começa o turno
             primeiroAJogar();
         }
-        System.out.println("GAME OVER!! Jogador tal perdeu");
+        
+        //mostrar o ganhador
+        showVencedor();
         
     }
+    
+    private void showVencedor()
+    {
+        String nomeVencedor = "";
+        if(jogador1.getTime() == null || jogador1.getTime().size() == 0)
+            nomeVencedor = "" + jogador2.getNome();
+        else
+            nomeVencedor = "" + jogador1.getNome();
+        
+        System.out.println("GAME OVER!! O jogador " + nomeVencedor + " venceu o jogo!");  
+    }
+    
     /**
      * Mostra informações sobre o time do jogador, isto é, os pokemons que compõe o time e seus ataques
      * @param jogador 
