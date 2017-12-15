@@ -94,7 +94,10 @@ public abstract class Ataque {
         if(this.tipo == pk_usuario.getEspecie().getTipo1() || this.tipo == pk_usuario.getEspecie().getTipo2())
             dano *= 1.5;
         
-        dano *= multiplicadorDano( pk_adversario);
+        dano *= multiplicadorDanoTipo1( pk_adversario);
+        if(pk_adversario.getEspecie().getTipo2() != null)
+            dano *= multiplicadorDanoTipo2( pk_adversario);
+        
         int r = ThreadLocalRandom.current().nextInt(217, 256);
         dano = (dano * r) / 255;
      
@@ -130,7 +133,7 @@ public abstract class Ataque {
     }
     
     
-    public double multiplicadorDano(Pokemon pk_adversario){
+    public double multiplicadorDanoTipo1(Pokemon pk_adversario){
         if(this.tipo == Tipo.NORMAL){
             if(pk_adversario.getEspecie().getTipo1() == Tipo.ROCK )
                 return 0.5;
@@ -237,6 +240,115 @@ public abstract class Ataque {
         }
         return 1.0;
     }
+    
+    public double multiplicadorDanoTipo2(Pokemon pk_adversario){
+        if(this.tipo == Tipo.NORMAL){
+            if(pk_adversario.getEspecie().getTipo2() == Tipo.ROCK )
+                return 0.5;
+            else if(pk_adversario.getEspecie().getTipo2() == Tipo.GHOST)
+                return 0;
+        }
+        else if(this.tipo == Tipo.FIGHTING){
+            if(pk_adversario.getEspecie().getTipo2() == Tipo.NORMAL || pk_adversario.getEspecie().getTipo2() == Tipo.ROCK || pk_adversario.getEspecie().getTipo2() == Tipo.ICE  )
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo2() == Tipo.FLYING || pk_adversario.getEspecie().getTipo2() == Tipo.POISON || pk_adversario.getEspecie().getTipo2() == Tipo.BUG
+                    || pk_adversario.getEspecie().getTipo2() == Tipo.PSYCHIC)
+                return 0.5;
+        }
+         else if(this.tipo == Tipo.FLYING){
+            if(pk_adversario.getEspecie().getTipo2() == Tipo.FIGHTING || pk_adversario.getEspecie().getTipo2() == Tipo.BUG || pk_adversario.getEspecie().getTipo2() == Tipo.GRASS  )
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo2() == Tipo.ROCK || pk_adversario.getEspecie().getTipo2() == Tipo.ELETRIC )
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.POISON){
+            if(pk_adversario.getEspecie().getTipo2() == Tipo.BUG || pk_adversario.getEspecie().getTipo2() == Tipo.GRASS )
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo2() == Tipo.POISON || pk_adversario.getEspecie().getTipo2() == Tipo.GROUND || pk_adversario.getEspecie().getTipo2() == Tipo.ROCK
+                    || pk_adversario.getEspecie().getTipo2() == Tipo.GHOST)
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.GROUND){
+            if(pk_adversario.getEspecie().getTipo2() == Tipo.POISON || pk_adversario.getEspecie().getTipo2() == Tipo.ROCK || pk_adversario.getEspecie().getTipo2() == Tipo.FIRE
+                    || pk_adversario.getEspecie().getTipo2() == Tipo.ELETRIC)
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo2() == Tipo.BUG || pk_adversario.getEspecie().getTipo2() == Tipo.GRASS)
+                return 0.5;
+             else if(pk_adversario.getEspecie().getTipo2() == Tipo.FLYING )
+                 return 0;
+        }
+        else if(this.tipo == Tipo.ROCK){
+            if(pk_adversario.getEspecie().getTipo2() == Tipo.FLYING || pk_adversario.getEspecie().getTipo2() == Tipo.BUG || pk_adversario.getEspecie().getTipo2() == Tipo.FIRE
+                    || pk_adversario.getEspecie().getTipo2() == Tipo.ICE)
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo2() == Tipo.FIGHTING || pk_adversario.getEspecie().getTipo2() == Tipo.GROUND)
+                return 0.5;
+        }
+         else if(this.tipo == Tipo.BUG){
+            if(pk_adversario.getEspecie().getTipo2() == Tipo.POISON || pk_adversario.getEspecie().getTipo2() == Tipo.GRASS || pk_adversario.getEspecie().getTipo2() == Tipo.PSYCHIC
+                    )
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo2() == Tipo.FIGHTING || pk_adversario.getEspecie().getTipo2() == Tipo.FLYING || pk_adversario.getEspecie().getTipo2() == Tipo.GHOST
+                    || pk_adversario.getEspecie().getTipo2() == Tipo.FIRE)
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.GHOST){
+            if(pk_adversario.getEspecie().getTipo2() == Tipo.GHOST)
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo2() == Tipo.NORMAL || pk_adversario.getEspecie().getTipo2() == Tipo.PSYCHIC )
+                return 0.0;
+        }
+        else if(this.tipo == Tipo.FIRE){
+            if(pk_adversario.getEspecie().getTipo2() == Tipo.BUG ||pk_adversario.getEspecie().getTipo2() == Tipo.GRASS || pk_adversario.getEspecie().getTipo2() == Tipo.ICE)
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo2() == Tipo.ROCK || pk_adversario.getEspecie().getTipo2() == Tipo.FIRE || pk_adversario.getEspecie().getTipo2() == Tipo.WATER
+                    || pk_adversario.getEspecie().getTipo2() == Tipo.DRAGON)
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.WATER){
+            if(pk_adversario.getEspecie().getTipo2() == Tipo.GROUND ||pk_adversario.getEspecie().getTipo2() == Tipo.ROCK || pk_adversario.getEspecie().getTipo2() == Tipo.FIRE)
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo2() == Tipo.WATER || pk_adversario.getEspecie().getTipo2() == Tipo.GRASS
+                    || pk_adversario.getEspecie().getTipo2() == Tipo.DRAGON)
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.GRASS){
+            if(pk_adversario.getEspecie().getTipo2() == Tipo.GROUND ||pk_adversario.getEspecie().getTipo2() == Tipo.ROCK || pk_adversario.getEspecie().getTipo2() == Tipo.WATER)
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo2() == Tipo.FLYING || pk_adversario.getEspecie().getTipo2() == Tipo.POISON
+                    || pk_adversario.getEspecie().getTipo2() == Tipo.BUG || pk_adversario.getEspecie().getTipo2() == Tipo.FIRE || pk_adversario.getEspecie().getTipo2() == Tipo.GRASS
+                    || pk_adversario.getEspecie().getTipo2() == Tipo.DRAGON)
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.ELETRIC){
+            if(pk_adversario.getEspecie().getTipo2() == Tipo.FLYING ||pk_adversario.getEspecie().getTipo2() == Tipo.WATER )
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo2() == Tipo.GRASS || pk_adversario.getEspecie().getTipo2() == Tipo.ELETRIC
+                    || pk_adversario.getEspecie().getTipo2() == Tipo.DRAGON)
+                return 0.5;
+            else if(pk_adversario.getEspecie().getTipo2() == Tipo.GROUND )
+                return 0;
+        }
+        else if(this.tipo == Tipo.PSYCHIC){
+            if(pk_adversario.getEspecie().getTipo2() == Tipo.FIGHTING ||pk_adversario.getEspecie().getTipo2() == Tipo.POISON )
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo2() == Tipo.PSYCHIC )
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.ICE){
+            if(pk_adversario.getEspecie().getTipo2() == Tipo.FLYING ||pk_adversario.getEspecie().getTipo2() == Tipo.GROUND ||pk_adversario.getEspecie().getTipo2() == Tipo.GRASS
+                    ||pk_adversario.getEspecie().getTipo2() == Tipo.DRAGON)
+                return 2;
+            else if(pk_adversario.getEspecie().getTipo2() == Tipo.WATER ||pk_adversario.getEspecie().getTipo2() == Tipo.ICE )
+                return 0.5;
+        }
+        else if(this.tipo == Tipo.DRAGON){
+            if(pk_adversario.getEspecie().getTipo2() == Tipo.DRAGON )
+                return 2;
+        }
+        return 1.0;
+    }
+    
     
     public boolean calculoAcerto(Pokemon pk_usuario, Pokemon pk_adversario){
         if(pk_usuario.getPriStatus() == Status.FROZEN || pk_usuario.getPriStatus() == Status.SLEEP || pk_usuario.isFlinch()){
