@@ -5,6 +5,7 @@
  */
 package pokemon;
 
+import execao.ExcecaoPokemon;
 import java.util.List;
 /**
  *
@@ -16,10 +17,16 @@ public class Jogar {
     
     public static void main(String[] args){
         
-        
+     try
+     {
         ba = new Batalha();
         ba.carregarTabelas();
         ba.inicializarJogadores();
+     }
+     catch(Exception e)
+     {
+         System.out.println(new ExcecaoPokemon("Um erro ocorreu durante a execução!")); 
+     }
         
         
     }
