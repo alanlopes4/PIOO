@@ -123,7 +123,7 @@ public class Batalha {
                 ArrayList<Ataque> ataques = (ArrayList<Ataque>) poke.getAtaque();
                System.out.println("");
                 System.out.println("Pokemon - " + time.indexOf(poke) + " : " + poke.getEspecie().getNome());
-                System.out.println("HP Atual: " + poke.getHpAtual());
+                System.out.printf("HP Atual: %.2f \n",poke.getHpAtual());
                 System.out.println("Status: " + poke.getPriStatus());
                 System.out.println("Ataques: ");
                 for(Ataque atk : ataques )

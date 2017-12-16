@@ -4,11 +4,9 @@ package ataques;
 import pokemon.Ataque;
 import pokemon.Pokemon;
 import pokemon.Tipo;
-import util.Leitor;
-
 /**
  *
- * @author sylar
+ * @author Alan e Alisson
  */
 public class AtaqueCharge extends Ataque {
 

@@ -5,6 +5,7 @@
  */
 package pokemon;
 
+import ataques.AtaqueMultihit;
 import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
@@ -91,7 +92,12 @@ public abstract class Ataque {
         if(pk_adversario.getDef()>255)
             pk_adversario.setDef(255);
         
-        double dano = (pk_usuario.getLevel()*pk_usuario.getAtk()*this.power/pk_adversario.getDef()/50)+2;
+         int level = pk_usuario.getLevel();
+        
+        if(this instanceof AtaqueMultihit)
+            level *=2;
+        
+        double dano = (level*pk_usuario.getAtk()*this.power/pk_adversario.getDef()/50)+2;
              
         if(this.tipo == pk_usuario.getEspecie().getTipo1() || this.tipo == pk_usuario.getEspecie().getTipo2())
             dano *= 1.5;
