@@ -13,8 +13,8 @@ import java.util.Random;
 import java.util.concurrent.ThreadLocalRandom;
 
 /**
- *
- * @author sylar
+ * Classe responsavel pelo gerenciamento dos ataques.
+ * @author Alan e Alisson
  */
 public abstract class Ataque {
     
@@ -30,6 +30,16 @@ public abstract class Ataque {
         
     }
 
+    /**
+     * Construtor da classe ataque.
+     * @param id
+     * @param nome
+     * @param tipo
+     * @param ppMax
+     * @param ppAtual
+     * @param power
+     * @param accuracy 
+     */
     public Ataque(int id, String nome, Tipo tipo, double ppMax, double ppAtual, double power, double accuracy) {
         this.id = id;
         this.nome = nome;
@@ -42,10 +52,18 @@ public abstract class Ataque {
     
     
     
-    
+    /**
+     * Calcula o efeito que o ataque irá realizar.
+     * @param pk_usuario
+     * @param pk_adversario 
+     */
     public abstract void efeito(Pokemon pk_usuario, Pokemon pk_adversario);
     
-    
+    /**
+     * O valor critico é calculado com base no spd do pokemon. Verifica se o ataque é critico ou não.
+     * @param spd
+     * @return 
+     */
     public  boolean calculoCritico(double spd){
         double retorno = spd / 512;
         if(ThreadLocalRandom.current().nextInt(0, 100) <retorno)
@@ -54,7 +72,12 @@ public abstract class Ataque {
             return false;
 
     }
-    
+    /**
+     * Calculo o dano que irá causar no seu adversário.
+     * @param pk_usuario
+     * @param pk_adversario
+     * @return 
+     */
     public double calculoDano(Pokemon pk_usuario, Pokemon pk_adversario){
         double ataqueUsuario = 0.0, defesaOponete = 0.0;
         if(this.tipo == Tipo.NORMAL || this.tipo == Tipo.FIGHTING || this.tipo == Tipo.FLYING  || this.tipo == Tipo.GROUND || this.tipo == Tipo.ROCK || this.tipo == Tipo.BUG  || this.tipo == Tipo.GHOST  || this.tipo == Tipo.POISON )
@@ -111,7 +134,12 @@ public abstract class Ataque {
      
         return dano;
     }
-    
+    /**
+     * Verifica qual será o comportamento do ataque baseado no status do pokemon.
+     * @param pk_usuario
+     * @param pk_adversario
+     * @param dano 
+     */
     public void comportamentoAtaque(Pokemon pk_usuario, Pokemon pk_adversario, double dano){
         String ans = " ";
         if(pk_usuario.isConfusion()) {
@@ -144,7 +172,11 @@ public abstract class Ataque {
         System.out.println("----------------------------------------");
     }
     
-    
+    /**
+     * Multiplica o dano do ataque de acordo com o tipo1 do pokemon.
+     * @param pk_adversario
+     * @return 
+     */
     public double multiplicadorDanoTipo1(Pokemon pk_adversario){
         if(this.tipo == Tipo.NORMAL){
             if(pk_adversario.getEspecie().getTipo1() == Tipo.ROCK )
@@ -253,6 +285,11 @@ public abstract class Ataque {
         return 1.0;
     }
     
+    /**
+     * Multiplica o dano do ataque de acordo com o tipo2 do ataque.
+     * @param pk_adversario
+     * @return 
+     */
     public double multiplicadorDanoTipo2(Pokemon pk_adversario){
         if(this.tipo == Tipo.NORMAL){
             if(pk_adversario.getEspecie().getTipo2() == Tipo.ROCK )
@@ -361,7 +398,12 @@ public abstract class Ataque {
         return 1.0;
     }
     
-    
+    /**
+     * Calcula a probabilidade de acerto do ataque.
+     * @param pk_usuario
+     * @param pk_adversario
+     * @return 
+     */
     public boolean calculoAcerto(Pokemon pk_usuario, Pokemon pk_adversario){
         if(pk_usuario.getPriStatus() == Status.FROZEN || pk_usuario.getPriStatus() == Status.SLEEP || pk_usuario.isFlinch()){
             System.out.println("Ataque nao pode ser realizado! Status do pokemon é "+ (pk_usuario.isFlinch()? "FLINCH" : pk_usuario.getPriStatus()));
@@ -377,7 +419,11 @@ public abstract class Ataque {
         }
         
     }
-    
+    /**
+     * Retorna o modifier de acordo com a tabela.
+     * @param mod
+     * @return 
+     */
     public static int getModifier(int mod) {
         switch(mod){
             case -6:
