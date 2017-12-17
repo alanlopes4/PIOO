@@ -97,7 +97,9 @@ public class Batalha {
         showVencedor();
         
     }
-    
+    /**
+     * Responsavél por mostrar o nome do vencedor da batalha.
+     */
     private void showVencedor()
     {
         String nomeVencedor = "";
@@ -281,13 +283,9 @@ public class Batalha {
         
     }
     
-    
-    public void verificarComportamentoStatus()
-    {
-        
-    }
     /**
-     * 
+     * Responsavél por selecionar o primeiro jogador a jogar com base nos 
+     * comandos escolhidos ou no SPD do pokemon.
      */
     public void primeiroAJogar()
     {

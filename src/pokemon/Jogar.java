@@ -2,7 +2,7 @@ package pokemon;
 
 import execao.ExcecaoPokemon;
 /**
- * Classe executável responsável pela
+ * Classe executável responsável pela carregamento dos dados e inicalização da batalha.
  * @author Alan e Alisson
  */
 public class Jogar {
