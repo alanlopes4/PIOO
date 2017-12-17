@@ -1,4 +1,3 @@
-
 package ataques;
 
 import pokemon.Ataque;
@@ -26,6 +25,11 @@ public class AtaqueFixo extends Ataque {
         this.val = val;
     }
 
+    /**
+     * Reponsável por aplicar o efeito de um AtaqueFixo
+     * @param pk_usuario
+     * @param pk_adversario 
+     */
     @Override
     public void efeito(Pokemon pk_usuario, Pokemon pk_adversario) {
         if(super.getPpAtual() >= 1){

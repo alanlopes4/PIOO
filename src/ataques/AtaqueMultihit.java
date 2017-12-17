@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ataques;
 
 import java.util.concurrent.ThreadLocalRandom;
@@ -12,7 +7,7 @@ import pokemon.Tipo;
 
 /**
  *
- * @author sylar
+ * @author Alan e Alisson
  */
 public class AtaqueMultihit extends Ataque {
     
@@ -26,7 +21,11 @@ public class AtaqueMultihit extends Ataque {
     }
     
     
-    
+    /**
+     * Responsável por aplicar o efeito de um ataqueMultihit
+     * @param pk_usuario
+     * @param pk_adversario 
+     */
     @Override
     public void efeito(Pokemon pk_usuario, Pokemon pk_adversario){
          if(super.getPpAtual() >= 1){

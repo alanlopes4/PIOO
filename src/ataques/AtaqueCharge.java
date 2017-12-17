@@ -14,6 +14,11 @@ public class AtaqueCharge extends Ataque {
         super(id, nome, tipo, ppMax, ppAtual, power, accuracy);
     }
 
+    /**
+     * Reponsável por aplicar o efeito de um AtaqueCharge
+     * @param pk_usuario
+     * @param pk_adversario 
+     */
     @Override
     public void efeito(Pokemon pk_usuario, Pokemon pk_adversario) {
         if(super.getPpAtual() >= 1){

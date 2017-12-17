@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package util;
 
 import ataques.AtaqueCharge;
@@ -22,12 +17,15 @@ import pokemon.Tipo;
 
 /**
  *
- * @author sylar
+ * @author Alan e Alisson
  */
 public class Leitor {
     
     
-    
+    /**
+     * método principal usado para testes da leitura de arquivo
+     * @param args 
+     */
     public static void main (String[]args){
         
         try{
@@ -44,7 +42,11 @@ public class Leitor {
     }
     
     
-    
+    /**
+     * Responsável pela leitura dos dados do arquivo TabelaDeAtaques.txt 
+     * Retorna um Arrayist de ataques 
+     * @return 
+     */
     public static ArrayList<Ataque> leitorAtaques(){
         ArrayList<Ataque> ataques = new ArrayList<Ataque>();
         try{
@@ -112,7 +114,11 @@ public class Leitor {
     }
     
     
-    
+    /**
+     * Converte a String 'status' do arquivo .txt em um tipo de ENUM do Status
+     * @param status
+     * @return 
+     */
     public static Status verificarStatus(String status){
         switch(status){
             case "Paralysis":
@@ -135,7 +141,12 @@ public class Leitor {
                 return Status.OK;
         }
     }
-    
+    /**
+     * Responsável pela leitura do arquivo TabelaDeEspecies.txt
+     * Retorna um ArrayList de especies
+     * @return
+     * @throws Exception 
+     */
     public static ArrayList<Especie> leitorEspecies() throws Exception{
         BufferedReader br = new BufferedReader(new FileReader("/alan/UEM/PPIOO/trabalho/TabelaDeEspecies.txt")); 
         ArrayList<Especie> especies = new ArrayList<Especie>();
@@ -155,7 +166,11 @@ public class Leitor {
     }
     
     
-    
+    /**
+     * Converte a string 'tipo' do arquivo .txt em um ENUM do Tipo
+     * @param tipo
+     * @return 
+     */
     public static Tipo verificadorTipo(String tipo){
         switch(tipo){
             case "Grass":
