@@ -9,11 +9,14 @@ import ataques.AtaqueMultihit;
 import ataques.AtaqueStatus;
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import pokemon.Ataque;
 import pokemon.Especie;
 import pokemon.Status;
 import pokemon.Tipo;
+import sun.security.pkcs11.P11TlsKeyMaterialGenerator;
 
 /**
  *
@@ -29,8 +32,8 @@ public class Leitor {
     public static void main (String[]args){
         
         try{
-		//leitorAtaques();
-                //leitorEspecies();
+		leitorAtaques();
+                leitorEspecies();
         }catch(Exception e){
             System.out.println("Erro:"+e);
             System.out.println("Message:"+e.getMessage());
@@ -50,7 +53,8 @@ public class Leitor {
     public static ArrayList<Ataque> leitorAtaques(){
         ArrayList<Ataque> ataques = new ArrayList<Ataque>();
         try{
-        BufferedReader br = new BufferedReader(new FileReader("/alan/UEM/PPIOO/trabalho/TabelaDeAtaques.txt"));
+        Path absolutePath = Paths.get("").toAbsolutePath();
+        BufferedReader br = new BufferedReader(new FileReader(absolutePath+"/arquivo/TabelaDeAtaques.txt"));
         
         //pulando a leitura da primeira linha
         String linha = br.readLine();
@@ -148,7 +152,8 @@ public class Leitor {
      * @throws Exception 
      */
     public static ArrayList<Especie> leitorEspecies() throws Exception{
-        BufferedReader br = new BufferedReader(new FileReader("/alan/UEM/PPIOO/trabalho/TabelaDeEspecies.txt")); 
+        Path absolutePath = Paths.get("").toAbsolutePath();
+        BufferedReader br = new BufferedReader(new FileReader(absolutePath+"/arquivo/TabelaDeEspecies.txt"));
         ArrayList<Especie> especies = new ArrayList<Especie>();
         String linha = br.readLine(); 
         Tipo tipo1 =  Tipo.NONE, tipo2 = Tipo.NONE;
